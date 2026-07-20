@@ -180,6 +180,7 @@ function SnowOverlay({ targetRef }: { targetRef: React.RefObject<HTMLDivElement 
 }
 
 interface Book {
+  _id?: string;
   sanskrit_name?: string;
   english_name?: string;
   sampradaaya?: string;
@@ -190,12 +191,20 @@ interface Book {
   position?: number;
 }
 
-export default function ShivaLibraryPage() {
-  // Define shivaBooks first before using it in state
-  const shivaBooks: Book[] = [];
+const DEFAULT_SHAIVA_BOOKS: Book[] = [
+  { _id: '1', sanskrit_name: 'शिवमहिम्न', english_name: 'Shiva Mahimna Stotra', category: 'Stotra', details: 'A glorious hymn dedicated to Lord Shiva by Pushpadanta.' },
+  { _id: '2', sanskrit_name: 'रुद्राक्ष', english_name: 'Rudraksha Mahatmya', category: 'Purana', details: 'Significance and glory of holy Rudraksha beads.' },
+  { _id: '3', sanskrit_name: 'लिंग पुराण', english_name: 'Linga Purana', category: 'Purana', details: 'One of the eighteen Mahapuranas detailing the Linga manifestation.' },
+  { _id: '4', sanskrit_name: 'शिव तंत्र', english_name: 'Shiva Tantra', category: 'Tantra', details: 'Esoteric traditions and meditative practices of Shaivism.' },
+  { _id: '5', sanskrit_name: 'महादेव कथा', english_name: 'Mahadeva Katha', category: 'Katha', details: 'Sacred legends and stories of Mahadeva.' },
+  { _id: '6', sanskrit_name: 'नटराज', english_name: 'Nataraja Stuti', category: 'Stotra', details: 'Praise of the Cosmic Dancer Nataraja.' },
+  { _id: '7', sanskrit_name: 'त्रिपुर भैरव', english_name: 'Tripura Bhairava', category: 'Agama', details: 'Agamic worship and cosmic principles of Shiva.' },
+];
 
+export default function ShivaLibraryPage() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const reverseIntervalRef = useRef<NodeJS.Timeout | number | null>(null);
   const timeUpdateHandlerRef = useRef<((evt: Event) => void) | null>(null);
   const introVideoRef = useRef<HTMLVideoElement | null>(null);
   const introAudioRef = useRef<HTMLAudioElement | null>(null);
@@ -213,10 +222,10 @@ export default function ShivaLibraryPage() {
   // Delay controls for 'S' key clockwise rotation
   const rotationDelayTimeoutRef = useRef<number | null>(null);
   const rotationDelayActiveRef = useRef(false);
-  const [allBooks, setAllBooks] = useState<Book[]>([]);
+  const [allBooks, setAllBooks] = useState<Book[]>(DEFAULT_SHAIVA_BOOKS);
   const [visibleOffset, setVisibleOffset] = useState(0);
   const [isRotating, setIsRotating] = useState(false);
-  const allBooksRef = useRef<Book[]>([]);
+  const allBooksRef = useRef<Book[]>(DEFAULT_SHAIVA_BOOKS);
   useEffect(() => { allBooksRef.current = allBooks; }, [allBooks]);
   useEffect(() => {
     const fetchBooks = async () => {
@@ -236,7 +245,9 @@ export default function ShivaLibraryPage() {
             }
             return false;
           });
-          setAllBooks(filteredBooks);
+          if (filteredBooks.length > 0) {
+            setAllBooks(filteredBooks);
+          }
         } else {
           const errorData = await response.json().catch(() => ({}));
           console.error('Failed to fetch books:', errorData.error || 'Unknown error');
@@ -253,11 +264,11 @@ export default function ShivaLibraryPage() {
 
   // Calculate visible books based on offset
   const visibleBooks = useMemo(() => {
-    if (!allBooks || allBooks.length === 0) return [];
-    const total = allBooks.length;
+    const list = allBooks.length > 0 ? allBooks : DEFAULT_SHAIVA_BOOKS;
+    const total = list.length;
     const result = [];
     for (let i = 0; i < 7; i++) {
-      result.push(allBooks[(visibleOffset + i) % total]);
+      result.push(list[(visibleOffset + i) % total]);
     }
     return result;
   }, [allBooks, visibleOffset]);
@@ -267,32 +278,13 @@ export default function ShivaLibraryPage() {
     const audio = introAudioRef.current;
     if (!introVid || !showIntro) return;
 
-    // Preload both video and audio
-    const preloadMedia = async () => {
-      try {
-        // Wait for video to be ready
-        if (introVid.readyState < 3) {
-          await new Promise(resolve => {
-            introVid.addEventListener('canplaythrough', resolve, { once: true });
-          });
-        }
-        // Preload audio
-        if (audio) {
-          audio.load();
-          if (audio.readyState < 3) {
-            await new Promise(resolve => {
-              audio.addEventListener('canplaythrough', resolve, { once: true });
-            });
-          }
-        }
-      } catch (err) {
-        console.log('Preload warning:', err);
-      }
-    };
-
-    preloadMedia();
+    let fallbackTimer: NodeJS.Timeout | null = null;
+    let isEnded = false;
 
     const handleIntroEnd = () => {
+      if (isEnded) return;
+      isEnded = true;
+      if (fallbackTimer) clearTimeout(fallbackTimer);
       if (audio) {
         try {
           audio.pause();
@@ -323,36 +315,37 @@ export default function ShivaLibraryPage() {
         try {
           audio.currentTime = 0;
           audio.volume = 0.7;
-          // Small delay to ensure video has started
-          setTimeout(() => {
-            audio.play().catch(() => {});
-          }, 50);
+          audio.play().catch(() => {});
         } catch {}
       }
     };
+
     const handleIntroPause = () => {
       if (audio) {
         try { audio.pause(); } catch {}
       }
     };
-    const handleIntroSync = () => {
-      if (audio && introVid) {
-        try {
-          const vt = introVid.currentTime;
-          if (Math.abs((audio.currentTime || 0) - vt) > 0.2) audio.currentTime = vt;
-        } catch {}
-      }
-    };
+
+    // Safety fallback: intro video mo_untain.mp4 is ~5.5 seconds long
+    // If video fails or stalls, automatically transition after 6.5s
+    fallbackTimer = setTimeout(() => {
+      handleIntroEnd();
+    }, 6500);
+
     introVid.addEventListener('ended', handleIntroEnd);
     introVid.addEventListener('play', handleIntroPlay);
     introVid.addEventListener('pause', handleIntroPause);
-    introVid.addEventListener('timeupdate', handleIntroSync);
     
+    // Attempt playback
+    introVid.play().catch(err => {
+      console.warn('Intro video autoplay warning:', err);
+    });
+
     return () => {
+      if (fallbackTimer) clearTimeout(fallbackTimer);
       introVid.removeEventListener('ended', handleIntroEnd);
       introVid.removeEventListener('play', handleIntroPlay);
       introVid.removeEventListener('pause', handleIntroPause);
-      introVid.removeEventListener('timeupdate', handleIntroSync);
       if (audio) {
         try { audio.pause(); } catch {}
       }
@@ -364,8 +357,14 @@ export default function ShivaLibraryPage() {
   // Rotation helpers
   const rotateForward = () => {
     const v = videoRef.current;
-    const len = allBooksRef.current.length;
-    if (!v || len <= 0 || isRotating) return;
+    const len = allBooksRef.current.length || 7;
+    if (isRotating) return;
+
+    if (reverseIntervalRef.current) {
+      clearInterval(reverseIntervalRef.current as NodeJS.Timeout);
+      reverseIntervalRef.current = null;
+    }
+
     setIsRotating(true);
     setBookRotation(prev => prev - 360);
     setTimeout(() => {
@@ -373,30 +372,26 @@ export default function ShivaLibraryPage() {
       setIsRotating(false);
     }, ROTATION_DURATION_MS);
 
-    if (timeUpdateHandlerRef.current) {
-      v.removeEventListener('timeupdate', timeUpdateHandlerRef.current as EventListener);
-      timeUpdateHandlerRef.current = null;
-    }
-    const start = () => {
+    if (v) {
       v.pause();
+      if (!v.src.endsWith('/finfin.mp4')) {
+        v.src = '/finfin.mp4';
+      }
       v.currentTime = 0;
-      v.play().catch(() => {});
-    };
-    if (v.readyState >= 1) {
-      start();
-    } else {
-      const lm = () => {
-        v.removeEventListener('loadedmetadata', lm as EventListener);
-        start();
-      };
-      v.addEventListener('loadedmetadata', lm as EventListener);
+      v.play().catch(err => console.warn('Video play warning:', err));
     }
   };
 
   const rotateBackward = () => {
     const v = videoRef.current;
-    const len = allBooksRef.current.length;
-    if (!v || len <= 0 || isRotating) return;
+    const len = allBooksRef.current.length || 7;
+    if (isRotating) return;
+
+    if (reverseIntervalRef.current) {
+      clearInterval(reverseIntervalRef.current as NodeJS.Timeout);
+      reverseIntervalRef.current = null;
+    }
+
     setIsRotating(true);
     setBookRotation(prev => prev + 360);
     setTimeout(() => {
@@ -404,143 +399,59 @@ export default function ShivaLibraryPage() {
       setIsRotating(false);
     }, ROTATION_DURATION_MS);
 
-    if (timeUpdateHandlerRef.current) {
-      v.removeEventListener('timeupdate', timeUpdateHandlerRef.current as EventListener);
-      timeUpdateHandlerRef.current = null;
-    }
-    const startReverse = () => {
-      const v2 = videoRef.current;
-      if (!v2) return;
-      v2.pause();
-      v2.currentTime = v2.duration;
-      let lastTime = performance.now();
-      const reverseHandler = () => {
-        const now = performance.now();
-        const delta = (now - lastTime) / 1000;
-        lastTime = now;
-        v2.currentTime = Math.max(0, v2.currentTime - delta);
-        if (v2.currentTime <= 0) {
-          v2.pause();
-          if (timeUpdateHandlerRef.current) {
-            v2.removeEventListener('timeupdate', timeUpdateHandlerRef.current as EventListener);
-            timeUpdateHandlerRef.current = null;
-          }
-        }
-      };
-      timeUpdateHandlerRef.current = reverseHandler as (evt: Event) => void;
-      v2.addEventListener('timeupdate', timeUpdateHandlerRef.current as EventListener);
-      v2.play().catch(() => {});
-    };
-    if (v.readyState >= 1) {
-      startReverse();
-    } else {
-      const lm = () => {
-        v.removeEventListener('loadedmetadata', lm as EventListener);
-        startReverse();
-      };
-      v.addEventListener('loadedmetadata', lm as EventListener);
-    }
-  };
-
-  // Helper to play main video in reverse immediately (used by 'S' key)
-  const playReverseVideo = () => {
-    const v = videoRef.current;
-    if (!v) return;
-    const startReverse = () => {
-      const v2 = videoRef.current;
-      if (!v2) return;
-      v2.pause();
-      v2.currentTime = v2.duration;
-      let lastTime = performance.now();
-      const reverseHandler = () => {
-        const now = performance.now();
-        const delta = (now - lastTime) / 1000;
-        lastTime = now;
-        v2.currentTime = Math.max(0, v2.currentTime - delta);
-        if (v2.currentTime <= 0) {
-          v2.pause();
-          if (timeUpdateHandlerRef.current) {
-            v2.removeEventListener('timeupdate', timeUpdateHandlerRef.current as EventListener);
-            timeUpdateHandlerRef.current = null;
-          }
-        }
-      };
-      if (timeUpdateHandlerRef.current) {
-        v2.removeEventListener('timeupdate', timeUpdateHandlerRef.current as EventListener);
-        timeUpdateHandlerRef.current = null;
+    if (v) {
+      if (!v.src.endsWith('/finfin.mp4')) {
+        v.src = '/finfin.mp4';
       }
-      timeUpdateHandlerRef.current = reverseHandler as (evt: Event) => void;
-      v2.addEventListener('timeupdate', timeUpdateHandlerRef.current as EventListener);
-      v2.play().catch(() => {});
-    };
-    if (v.readyState >= 1) {
-      startReverse();
-    } else {
-      const lm = () => {
-        v.removeEventListener('loadedmetadata', lm as EventListener);
-        startReverse();
-      };
-      v.addEventListener('loadedmetadata', lm as EventListener);
-    }
-  };
+      v.pause();
 
-  // Visual-only backward rotation (books) without touching video
-  const rotateBackwardVisualOnly = () => {
-    const len = allBooksRef.current.length;
-    if (len <= 0 || isRotating) return;
-    setIsRotating(true);
-    setBookRotation(prev => prev + 360);
-    setTimeout(() => {
-      setVisibleOffset(prev => (prev - 1 + len) % len);
-      setIsRotating(false);
-    }, ROTATION_DURATION_MS);
+      const startPos = !isNaN(v.duration) && v.duration > 0 ? v.duration : 5;
+      if (v.currentTime <= 0.1 || v.currentTime >= startPos) {
+        v.currentTime = startPos;
+      }
+
+      let lastTime = performance.now();
+      reverseIntervalRef.current = setInterval(() => {
+        const now = performance.now();
+        const delta = (now - lastTime) / 1000;
+        lastTime = now;
+
+        if (v && v.currentTime > 0.05) {
+          v.currentTime = Math.max(0, v.currentTime - delta);
+        } else {
+          if (v) v.currentTime = 0;
+          if (reverseIntervalRef.current) {
+            clearInterval(reverseIntervalRef.current as NodeJS.Timeout);
+            reverseIntervalRef.current = null;
+          }
+        }
+      }, 30);
+    }
   };
 
   // S and W key handlers for main video and book rotation
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      const v = videoRef.current;
-      if (!v) return;
-      const len = allBooksRef.current.length;
-      if (len <= 0) return;
-
       const key = e.key.toLowerCase();
 
       if (key === 'w') {
-        // Cancel any pending delayed 's' rotation when 'W' is pressed
-        if (rotationDelayTimeoutRef.current) {
-          clearTimeout(rotationDelayTimeoutRef.current);
-          rotationDelayTimeoutRef.current = null;
-          rotationDelayActiveRef.current = false;
-        }
         if (isRotating) return;
         rotateForward();
         return;
       }
 
       if (key === 's') {
-        // Start reverse video immediately
-        playReverseVideo();
-        // Schedule only the visual rotation after 2 seconds
         if (isRotating) return;
-        if (rotationDelayActiveRef.current) return;
-        rotationDelayActiveRef.current = true;
-        rotationDelayTimeoutRef.current = window.setTimeout(() => {
-          rotationDelayActiveRef.current = false;
-          rotationDelayTimeoutRef.current = null;
-          rotateBackwardVisualOnly();
-        }, 2000);
+        rotateBackward();
         return;
       }
     };
     window.addEventListener('keydown', handler);
     return () => {
       window.removeEventListener('keydown', handler);
-      // Cleanup any pending delayed rotation
-      if (rotationDelayTimeoutRef.current) {
-        clearTimeout(rotationDelayTimeoutRef.current);
-        rotationDelayTimeoutRef.current = null;
-        rotationDelayActiveRef.current = false;
+      if (reverseIntervalRef.current) {
+        clearInterval(reverseIntervalRef.current as NodeJS.Timeout);
+        reverseIntervalRef.current = null;
       }
     };
   }, [isRotating]);
