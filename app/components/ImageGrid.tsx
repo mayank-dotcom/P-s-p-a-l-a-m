@@ -41,7 +41,7 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
     {
       src: '/Devi.png',
       title: 'Śākta',
-      link: '/library',
+      link: '/Devi_lib',
       description: 'Practitioners of Śākta worship who honor the Devī as the primordial power.'
     },
     {
@@ -270,7 +270,7 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
           onSegmentHover?.();
         }}
         onMouseLeave={() => setHoveredIndex(null)}
-      >
+      ><a href={imageData[3].link} style={{ display: 'block', height: '100%', width: '100%', cursor: 'pointer' }}>
         <div
           className="h-full w-full transition-all duration-500"
           style={{ transform: 'skewX(15deg) scale(1.7)' }}
@@ -308,6 +308,7 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
             </p>
           </div>
         </div>
+        </a>
       </div>
 
       {/* Grid Item 5 */}
