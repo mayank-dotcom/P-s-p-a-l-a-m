@@ -7,11 +7,11 @@ import ThirdEyeFlareRed from '../components/ThirdEyeFlareRed';
 import ThirdEyeDialog from '../components/ThirdEyeDialog';
 import './library.css';
 interface Book {
-  _id: string;
+  _id?: string;
   sanskrit_name?: string;
   english_name?: string;
   sampradaaya?: string;
-  position: number;
+  position?: number;
   image?: string;
   details?: string;
   category?: string;
