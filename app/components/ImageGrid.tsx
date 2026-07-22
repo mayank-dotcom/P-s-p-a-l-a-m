@@ -89,9 +89,10 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
         }`}
         style={{
           transform: 'skewX(-15deg)',
-          width: 'calc(16.666% + 250px)',
-          marginLeft: '-80px',
-          transitionDelay: '0ms'
+          width: hoveredIndex === 0 ? 'calc(((100% / 7) + 250px) * 3)' : 'calc((100% / 7) + 250px)',
+          marginLeft: '-110px',
+          transitionDelay: '0ms',
+          zIndex: hoveredIndex === 0 ? 30 : 1
         }}
         onMouseEnter={() => {
           setHoveredIndex(0);
@@ -101,13 +102,17 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
       >
         <a href={imageData[0].link} style={{ display: 'block', height: '100%', width: '100%', cursor: 'pointer' }}>
           <div
-            className="h-full w-full transition-all duration-500"
-            style={{ transform: 'skewX(15deg) scale(1.3)' }}
+            className="h-full transition-all duration-500"
+            style={{
+              width: 'calc(100% + 54vh)',
+              marginLeft: '-27vh',
+              transform: hoveredIndex === 0 ? 'skewX(15deg) scale(1.05)' : 'skewX(15deg) scale(1.5)'
+            }}
           >
             <img
               src={imageData[0].src}
               alt={imageData[0].title}
-              className="h-full w-full object-cover object-center transition-transform duration-500 hover:scale-110"
+              className="h-full w-full object-cover object-[center_20%] transition-transform duration-500 hover:scale-110"
               loading="eager"
             />
           </div>
@@ -122,7 +127,7 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
             className={`absolute inset-0 flex flex-col justify-center items-center p-6 transition-opacity duration-500 ${
               hoveredIndex === 0 ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ transform: 'skewX(-15deg)', width: '210px', marginLeft: '11px', marginTop: '-12rem' }}
+            style={{ transform: 'skewX(-15deg)', width: hoveredIndex === 0 ? '360px' : '210px', marginLeft: '11px', marginTop: '-12rem', transition: 'width 0.5s ease-out' }}
           >
             <div
               style={{
@@ -150,9 +155,10 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
         }`}
         style={{
           transform: 'skewX(-15deg)',
-          width: 'calc(16.666% + 250px)',
+          width: hoveredIndex === 1 ? 'calc(((100% / 7) + 250px) * 3)' : 'calc((100% / 7) + 250px)',
           marginLeft: '-110px',
-          transitionDelay: '120ms'
+          transitionDelay: '120ms',
+          zIndex: hoveredIndex === 1 ? 30 : 1
         }}
         onMouseEnter={() => {
           setHoveredIndex(1);
@@ -162,13 +168,17 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
       >
         <a href={imageData[1].link} style={{ display: 'block', height: '100%', width: '100%', cursor: 'pointer' }}>
           <div
-            className="h-full w-full transition-all duration-500"
-            style={{ transform: 'skewX(15deg) scale(1.7)' }}
+            className="h-full transition-all duration-500"
+            style={{
+              width: 'calc(100% + 54vh)',
+              marginLeft: '-27vh',
+              transform: hoveredIndex === 1 ? 'skewX(15deg) scale(1.05)' : 'skewX(15deg) scale(1.7)'
+            }}
           >
             <img
               src={imageData[1].src}
               alt={imageData[1].title}
-              className="h-full w-full object-cover object-center transition-transform duration-500 hover:scale-110"
+              className="h-full w-full object-cover object-[center_25%] transition-transform duration-500 hover:scale-110"
               loading="eager"
             />
           </div>
@@ -183,7 +193,7 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
             className={`absolute inset-0 flex flex-col justify-center items-center p-6 transition-opacity duration-500 ${
               hoveredIndex === 1 ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ transform: 'skewX(-15deg)', marginRight: '100px' }}
+            style={{ transform: 'skewX(-15deg)', width: hoveredIndex === 1 ? '360px' : '210px', transition: 'width 0.5s ease-out' }}
           >
             <div
               style={{
@@ -211,9 +221,10 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
         }`}
         style={{
           transform: 'skewX(-15deg)',
-          width: 'calc(16.666% + 250px)',
+          width: hoveredIndex === 2 ? 'calc(((100% / 7) + 250px) * 3)' : 'calc((100% / 7) + 250px)',
           marginLeft: '-110px',
-          transitionDelay: '240ms'
+          transitionDelay: '240ms',
+          zIndex: hoveredIndex === 2 ? 30 : 1
         }}
         onMouseEnter={() => {
           setHoveredIndex(2);
@@ -223,13 +234,17 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
       >
         <a href={imageData[2].link} style={{ display: 'block', height: '100%', width: '100%', cursor: 'pointer' }}>
           <div
-            className="h-full w-full transition-all duration-500"
-            style={{ transform: 'skewX(15deg) scale(1.7)' }}
+            className="h-full transition-all duration-500"
+            style={{
+              width: 'calc(100% + 54vh)',
+              marginLeft: '-27vh',
+              transform: hoveredIndex === 2 ? 'skewX(15deg) scale(1.05)' : 'skewX(15deg) scale(1.7)'
+            }}
           >
             <img
               src={imageData[2].src}
               alt={imageData[2].title}
-              className="h-full w-full object-cover object-center transition-transform duration-500 hover:scale-110"
+              className="h-full w-full object-cover object-[center_20%] transition-transform duration-500 hover:scale-110"
               loading="eager"
             />
           </div>
@@ -244,7 +259,7 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
             className={`absolute inset-0 flex flex-col justify-center items-center p-6 transition-opacity duration-500 ${
               hoveredIndex === 2 ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ transform: 'skewX(-15deg)', marginRight: '100px' }}
+            style={{ transform: 'skewX(-15deg)', width: hoveredIndex === 2 ? '360px' : '210px', transition: 'width 0.5s ease-out' }}
           >
             <div
               style={{
@@ -272,9 +287,10 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
         }`}
         style={{
           transform: 'skewX(-15deg)',
-          width: 'calc(16.666% + 250px)',
+          width: hoveredIndex === 3 ? 'calc(((100% / 7) + 250px) * 3)' : 'calc((100% / 7) + 250px)',
           marginLeft: '-110px',
-          transitionDelay: '360ms'
+          transitionDelay: '360ms',
+          zIndex: hoveredIndex === 3 ? 30 : 1
         }}
         onMouseEnter={() => {
           setHoveredIndex(3);
@@ -284,13 +300,17 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
       >
         <a href={imageData[3].link} style={{ display: 'block', height: '100%', width: '100%', cursor: 'pointer' }}>
           <div
-            className="h-full w-full transition-all duration-500"
-            style={{ transform: 'skewX(15deg) scale(1.7)' }}
+            className="h-full transition-all duration-500"
+            style={{
+              width: 'calc(100% + 54vh)',
+              marginLeft: '-27vh',
+              transform: hoveredIndex === 3 ? 'skewX(15deg) scale(1.2) translateY(-8%)' : 'skewX(15deg) scale(1.7) translateY(-12%)'
+            }}
           >
             <img
               src={imageData[3].src}
               alt={imageData[3].title}
-              className="h-full w-full object-cover object-[center_80%] transition-transform duration-500 hover:scale-110"
+              className="h-full w-full object-cover object-[center_30%] transition-transform duration-500 hover:scale-110"
               loading="eager"
             />
           </div>
@@ -305,7 +325,7 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
             className={`absolute inset-0 flex flex-col justify-center items-center p-6 transition-opacity duration-500 ${
               hoveredIndex === 3 ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ transform: 'skewX(-15deg)', marginRight: '100px' }}
+            style={{ transform: 'skewX(-15deg)', width: hoveredIndex === 3 ? '360px' : '210px', transition: 'width 0.5s ease-out' }}
           >
             <div
               style={{
@@ -333,9 +353,10 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
         }`}
         style={{
           transform: 'skewX(-15deg)',
-          width: 'calc(16.666% + 320px)',
+          width: hoveredIndex === 4 ? 'calc(((100% / 7) + 250px) * 3)' : 'calc((100% / 7) + 250px)',
           marginLeft: '-110px',
-          transitionDelay: '480ms'
+          transitionDelay: '480ms',
+          zIndex: hoveredIndex === 4 ? 30 : 1
         }}
         onMouseEnter={() => {
           setHoveredIndex(4);
@@ -345,13 +366,17 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
       >
         <a href={imageData[4].link} style={{ display: 'block', height: '100%', width: '100%', cursor: 'pointer' }}>
           <div
-            className="h-full w-full transition-all duration-500"
-            style={{ transform: 'skewX(15deg) scale(1.6) translateY(5%)' }}
+            className="h-full transition-all duration-500"
+            style={{
+              width: 'calc(100% + 54vh)',
+              marginLeft: '-27vh',
+              transform: hoveredIndex === 4 ? 'skewX(15deg) scale(1.05)' : 'skewX(15deg) scale(1.6) translateY(12%)'
+            }}
           >
             <img
               src={imageData[4].src}
               alt={imageData[4].title}
-              className="h-full w-full object-cover object-[center_50%] transition-transform duration-500 hover:scale-110"
+              className="h-full w-full object-cover object-[center_30%] transition-transform duration-500 hover:scale-110"
               loading="eager"
             />
           </div>
@@ -366,7 +391,7 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
             className={`absolute inset-0 flex flex-col justify-center items-center p-6 transition-opacity duration-500 ${
               hoveredIndex === 4 ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ transform: 'skewX(-15deg)', marginRight: '100px' }}
+            style={{ transform: 'skewX(-15deg)', width: hoveredIndex === 4 ? '360px' : '210px', transition: 'width 0.5s ease-out' }}
           >
             <div
               style={{
@@ -394,9 +419,10 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
         }`}
         style={{
           transform: 'skewX(-15deg)',
-          width: 'calc(16.666% + 250px)',
+          width: hoveredIndex === 5 ? 'calc(((100% / 7) + 250px) * 3)' : 'calc((100% / 7) + 250px)',
           marginLeft: '-110px',
-          transitionDelay: '600ms'
+          transitionDelay: '600ms',
+          zIndex: hoveredIndex === 5 ? 30 : 1
         }}
         onMouseEnter={() => {
           setHoveredIndex(5);
@@ -406,13 +432,17 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
       >
         <a href={imageData[5].link} style={{ display: 'block', height: '100%', width: '100%', cursor: 'pointer' }}>
           <div
-            className="h-full w-full transition-all duration-500"
-            style={{ transform: 'skewX(15deg) scale(1.7)' }}
+            className="h-full transition-all duration-500"
+            style={{
+              width: 'calc(100% + 54vh)',
+              marginLeft: '-27vh',
+              transform: hoveredIndex === 5 ? 'skewX(15deg) scale(1.05)' : 'skewX(15deg) scale(1.7)'
+            }}
           >
             <img
               src={imageData[5].src}
               alt={imageData[5].title}
-              className="h-full w-full object-cover object-center transition-transform duration-500 hover:scale-110"
+              className="h-full w-full object-cover object-[center_20%] transition-transform duration-500 hover:scale-110"
               loading="eager"
             />
           </div>
@@ -427,7 +457,7 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
             className={`absolute inset-0 flex flex-col justify-center items-center p-6 transition-opacity duration-500 ${
               hoveredIndex === 5 ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ transform: 'skewX(-15deg)', marginRight: '100px' }}
+            style={{ transform: 'skewX(-15deg)', width: hoveredIndex === 5 ? '360px' : '210px', transition: 'width 0.5s ease-out' }}
           >
             <div
               style={{
@@ -455,10 +485,11 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
         }`}
         style={{
           transform: 'skewX(-15deg)',
-          width: 'calc(16.666% + 180px)',
+          width: hoveredIndex === 6 ? 'calc(((100% / 7) + 250px) * 3)' : 'calc((100% / 7) + 250px)',
           marginLeft: '-110px',
-          marginRight: '-80px',
-          transitionDelay: '720ms'
+          marginRight: '-110px',
+          transitionDelay: '720ms',
+          zIndex: hoveredIndex === 6 ? 30 : 1
         }}
         onMouseEnter={() => {
           setHoveredIndex(6);
@@ -468,13 +499,17 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
       >
         <a href={imageData[6].link} style={{ display: 'block', height: '100%', width: '100%', cursor: 'pointer' }}>
           <div
-            className="h-full w-full transition-all duration-500"
-            style={{ transform: 'skewX(15deg) scale(1.7)' }}
+            className="h-full transition-all duration-500"
+            style={{
+              width: 'calc(100% + 54vh)',
+              marginLeft: '-27vh',
+              transform: hoveredIndex === 6 ? 'skewX(15deg) scale(1.05)' : 'skewX(15deg) scale(1.7)'
+            }}
           >
             <img
               src={imageData[6].src}
               alt={imageData[6].title}
-              className="h-full w-full object-cover object-center transition-transform duration-500 hover:scale-110"
+              className="h-full w-full object-cover object-[center_25%] transition-transform duration-500 hover:scale-110"
               loading="eager"
             />
           </div>
@@ -489,7 +524,7 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
             className={`absolute inset-0 flex flex-col justify-center items-center p-6 transition-opacity duration-500 ${
               hoveredIndex === 6 ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ transform: 'skewX(-15deg)', marginRight: '200px', width: '220px' }}
+            style={{ transform: 'skewX(-15deg)', width: hoveredIndex === 6 ? '360px' : '220px', transition: 'width 0.5s ease-out' }}
           >
             <div
               style={{

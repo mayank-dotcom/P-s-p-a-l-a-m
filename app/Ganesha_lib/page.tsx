@@ -236,15 +236,33 @@ export default function LibraryPage() {
   }, [books.length]);
 
   return (
-    <div className="w-full min-h-screen overflow-hidden relative bg-black" onMouseMove={(e) => console.log('Mouse move on page:', e.clientX, e.clientY)}>
+    <div className="w-full min-h-screen overflow-x-hidden overflow-y-auto relative bg-black" onMouseMove={(e) => console.log('Mouse move on page:', e.clientX, e.clientY)}>
       <audio ref={audioRef} src="/Ganesh_theme.webm" preload="aumkoto" style={{ display: 'none' }} />
       <Navbar />
-      {/* Background Image */}
-      <img 
-        src="/Ganesha_background.jpg" 
-        alt="Ganesh background" 
-        className="w-full h-auto object-contain"
-      />
+
+      {/* Hero Section */}
+      <section className="relative w-full min-h-screen flex flex-col md:flex-row items-center justify-between px-8 md:px-16 lg:px-24 py-12 z-20">
+        {/* Left Side Image */}
+        <div className="w-full md:w-1/2 flex justify-center md:justify-start items-center">
+          <img 
+            src="/Ganesha/clean_ganesha.png" 
+            alt="Clean Ganesha" 
+            className="max-h-[85vh] w-auto object-contain drop-shadow-2xl"
+          />
+        </div>
+        {/* Right Side - Blank background as requested */}
+        <div className="w-full md:w-1/2 flex flex-col justify-center items-start">
+        </div>
+      </section>
+
+      {/* Secondary Section (Original Interactive Ganesha Section) */}
+      <section className="relative w-full min-h-screen overflow-hidden">
+        {/* Background Image */}
+        <img 
+          src="/Ganesha_background.jpg" 
+          alt="Ganesh background" 
+          className="w-full h-auto object-contain"
+        />
       
       {/* Ganesh Body - Center (Behind hands) */}
       <img 
@@ -754,6 +772,7 @@ export default function LibraryPage() {
           {loading ? '' : getBookName(6)}
         </div>
       </div>
+      </section>
 
       <style jsx>{`
         /* Cloud Animations */
