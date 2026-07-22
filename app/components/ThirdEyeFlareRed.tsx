@@ -13,7 +13,7 @@ export default function ThirdEyeFlareRed({ onClick }: ThirdEyeFlareRedProps) {
         transform: 'translate(-50%, -50%)',
         cursor: 'pointer',
         zIndex: 60,
-        scale: 0.5,
+        scale: 0.4,
         animation: 'flareAppear 1s ease-out forwards',
       }}
     >

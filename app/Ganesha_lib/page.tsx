@@ -772,6 +772,10 @@ export default function LibraryPage() {
           {loading ? '' : getBookName(6)}
         </div>
       </div>
+      {/* Third Eye Flare - On Ganesha's head in secondary section */}
+      {showBooks && showThirdEyeFlare && !showThirdEyeDialog && (
+        <ThirdEyeFlareRed onClick={handleThirdEyeClick} />
+      )}
       </section>
 
       <style jsx>{`
@@ -1476,11 +1480,6 @@ export default function LibraryPage() {
             />
               </div>
         </>
-      )}
-
-      {/* Third Eye Flare - Show after books appear */}
-      {showBooks && showThirdEyeFlare && !showThirdEyeDialog && (
-        <ThirdEyeFlareRed onClick={handleThirdEyeClick} />
       )}
 
       {/* Third Eye Dialog */}

@@ -14,6 +14,61 @@ interface ImageInfo {
   link: string;
 }
 
+interface DetailCardProps {
+  isVisible: boolean;
+  title: string;
+  description: string;
+}
+
+function DetailCard({ isVisible, title, description }: DetailCardProps) {
+  return (
+    <div
+      className={`absolute inset-0 flex flex-col justify-center items-center p-4 transition-opacity duration-500 z-40 ${
+        isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`}
+      style={{
+        marginTop: '3.5rem',
+      }}
+    >
+      {/* Shared relative wrapper to sync animations and positioning */}
+      <div
+        style={{
+          transform: isVisible ? 'skewX(15deg) scale(1)' : 'skewX(15deg) scale(0.95)',
+          transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+        }}
+        className="relative w-[420px] max-w-[90vw] aspect-[1.05]"
+      >
+        {/* Blur element - positioned behind the card (z-0) with reduced height from top */}
+        <div className="absolute inset-x-8 top-16 bottom-8 rounded-[24px] backdrop-blur-sm pointer-events-none z-0" />
+
+        {/* Card element - rendered on top of the blur (z-10) with sharp card.png */}
+        <div
+          style={{
+            backgroundImage: "url('/card.png')",
+            backgroundSize: '100% 100%',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+          }}
+          className="absolute inset-0 p-10 flex flex-col justify-center items-center text-center shadow-2xl z-10"
+        >
+          {/* Card Content */}
+          <div className="w-full flex flex-col items-center justify-center my-auto px-6">
+            {/* Title */}
+            <h3 className="text-[#FFE5A3] text-3xl font-bold tracking-wide font-[family-name:var(--font-jaini-purva)] drop-shadow-[0_2px_8px_rgba(200,147,62,0.35)] mb-4">
+              {title}
+            </h3>
+
+            {/* Description */}
+            <p className="text-[#FFE5A3]/90 text-[15px] leading-relaxed font-sans px-4">
+              {description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProps) {
   const [isMounted, setIsMounted] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -29,43 +84,43 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
       src: '/Ganpati.jpg',
       link: '/Ganesha_lib',
       title: 'Gāṇapatya',
-      description: 'Members of the Gaṇapatya sect who venerate Gaṇeśa as the supreme.'
+      description: 'Follow the path of the Gāṇapatya sect who venerate Lord Gaṇeśa as the supreme deity. Embark on a sacred journey of wisdom, intellect, and spiritual growth, honoring the divine remover of obstacles and the benevolent giver of all auspicious beginnings in life.'
     },
     {
       src: '/Shiv.png',
       title: 'Śaiva',
       link: '/Shiva_lib',
-      description: 'Followers of Śaiva tradition who revere Śiva as the supreme cosmic principle.'
+      description: 'Follow the sacred Śaiva tradition that reveres Lord Śiva as the ultimate, supreme cosmic principle of the universe. Seek inner peace, ultimate detachment, and profound spiritual realization through the grace of the infinite cosmic dancer who orchestrates the cycles of creation, preservation, and dissolution.'
     },
     {
       src: '/Vishnu.png',
       title: 'Vaiṣṇava',
       link: '/Vishnu_lib',
-      description: 'Adherents of Vaiṣṇava dharma centered on Vishnu as the ultimate divinity.'
+      description: 'Adhere to the Vaiṣṇava dharma centered on Lord Viṣṇu as the ultimate source of preservation and divinity. Embrace the path of unconditional bhakti, righteous living, and cosmic harmony, meditating on the divine descents of the Lord who manifests age after age to protect the universe.'
     },
     {
       src: '/Devi.png',
       title: 'Śākta',
       link: '/Devi_lib',
-      description: 'Practitioners of Śākta worship who honor the Devī as the primordial power.'
+      description: 'Honor the supreme Devī as the primordial power and cosmic creator in the Śākta tradition. Meditate upon the infinite flow of maternal grace, divine energy, and fierce protection, surrendering to the cosmic force of the Divine Mother who sustains and guides all living beings.'
     },
     {
       src: '/Surya.png',
       title: 'Saurā',
       link: '/Surya_lib',
-      description: 'Followers of the Saurā tradition that exalts Sūrya, the solar lord.'
+      description: 'Follow the ancient Saurā tradition exalting Lord Sūrya, the supreme solar deity. Align your spirit with the eternal source of light, life-giving energy, physical health, and supreme cosmic consciousness that sustains all planetary life and dispels the dark shadows of spiritual ignorance.'
     },
     {
       src: '/Kartikeya.jpg',
       title: 'Kaumāra',
       link: '/library',
-      description: 'Devotees of Kaumāra lineage dedicated to Kumāra / Kārtikeya as their chief deity.'
+      description: 'Connect with the Kaumāra lineage dedicated to Lord Kumāra, also known as Murugan or Kārtikeya. Invoke the supreme commander of divine forces, who represents the peak of absolute courage, eternal youth, righteousness, and the ultimate spiritual victory of light over dark forces.'
     },
     {
       src: '/Smartha.png',
       title: 'Smārta',
       link: '/library',
-      description: 'Practitioners of Smārta philosophy who embrace a pancha-devatā (five-deity) balanced approach.'
+      description: 'Embrace the Smārta philosophy, which advocates a non-sectarian, balanced pancha-devatā approach to worship. Meditate on the absolute unity of the singular divine consciousness manifest harmoniously through five major personal deities, guiding seekers along a path of pure wisdom and liberation.'
     },
   ];
 
@@ -123,28 +178,11 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
             }`}
           />
           {/* Description Overlay */}
-          <div
-            className={`absolute inset-0 flex flex-col justify-center items-center p-6 transition-opacity duration-500 ${
-              hoveredIndex === 0 ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ transform: 'skewX(-15deg)', width: hoveredIndex === 0 ? '360px' : '210px', marginLeft: '11px', marginTop: '-12rem', transition: 'width 0.5s ease-out' }}
-          >
-            <div
-              style={{
-                transform: hoveredIndex === 0 ? 'skewX(15deg) translateX(0)' : 'skewX(15deg) translateX(100%)',
-                transition: 'transform 0.5s ease-out'
-              }}
-              className="text-center max-w-full px-4"
-            >
-              <img src="/icon.png" alt="Icon" className="w-15 h-15 mx-auto mb-3" />
-              <h3 className="text-white text-2xl font-bold mb-2 underline decoration-white decoration-2 break-words font-[family-name:var(--font-jaini-purva)]">
-                {imageData[0].title}
-              </h3>
-              <p className="text-white/90 text-sm leading-relaxed break-words font-[family-name:var(--font-jaini-purva)]">
-                {imageData[0].description}
-              </p>
-            </div>
-          </div>
+          <DetailCard
+            isVisible={hoveredIndex === 0}
+            title={imageData[0].title}
+            description={imageData[0].description}
+          />
         </a>
       </div>
 
@@ -189,28 +227,11 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
             }`}
           />
           {/* Description Overlay */}
-          <div
-            className={`absolute inset-0 flex flex-col justify-center items-center p-6 transition-opacity duration-500 ${
-              hoveredIndex === 1 ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ transform: 'skewX(-15deg)', width: hoveredIndex === 1 ? '360px' : '210px', transition: 'width 0.5s ease-out' }}
-          >
-            <div
-              style={{
-                transform: hoveredIndex === 1 ? 'skewX(15deg) translateX(0)' : 'skewX(15deg) translateX(100%)',
-                transition: 'transform 0.5s ease-out'
-              }}
-              className="text-center max-w-full px-4"
-            >
-              <img src="/icon.png" alt="Icon" className="w-15 h-15 mx-auto mb-3" />
-              <h3 className="text-white text-2xl font-bold mb-2 underline decoration-white decoration-2 break-words font-[family-name:var(--font-jaini-purva)]">
-                {imageData[1].title}
-              </h3>
-              <p className="text-white/90 text-sm leading-relaxed break-words font-[family-name:var(--font-jaini-purva)]">
-                {imageData[1].description}
-              </p>
-            </div>
-          </div>
+          <DetailCard
+            isVisible={hoveredIndex === 1}
+            title={imageData[1].title}
+            description={imageData[1].description}
+          />
         </a>
       </div>
 
@@ -255,28 +276,11 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
             }`}
           />
           {/* Description Overlay */}
-          <div
-            className={`absolute inset-0 flex flex-col justify-center items-center p-6 transition-opacity duration-500 ${
-              hoveredIndex === 2 ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ transform: 'skewX(-15deg)', width: hoveredIndex === 2 ? '360px' : '210px', transition: 'width 0.5s ease-out' }}
-          >
-            <div
-              style={{
-                transform: hoveredIndex === 2 ? 'skewX(15deg) translateX(0)' : 'skewX(15deg) translateX(100%)',
-                transition: 'transform 0.5s ease-out'
-              }}
-              className="text-center max-w-full px-4"
-            >
-              <img src="/icon.png" alt="Icon" className="w-15 h-15 mx-auto mb-3" />
-              <h3 className="text-white text-2xl font-bold mb-2 underline decoration-white decoration-2 break-words font-[family-name:var(--font-jaini-purva)]">
-                {imageData[2].title}
-              </h3>
-              <p className="text-white/90 text-sm leading-relaxed break-words font-[family-name:var(--font-jaini-purva)]">
-                {imageData[2].description}
-              </p>
-            </div>
-          </div>
+          <DetailCard
+            isVisible={hoveredIndex === 2}
+            title={imageData[2].title}
+            description={imageData[2].description}
+          />
         </a>
       </div>
 
@@ -321,28 +325,11 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
             }`}
           />
           {/* Description Overlay */}
-          <div
-            className={`absolute inset-0 flex flex-col justify-center items-center p-6 transition-opacity duration-500 ${
-              hoveredIndex === 3 ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ transform: 'skewX(-15deg)', width: hoveredIndex === 3 ? '360px' : '210px', transition: 'width 0.5s ease-out' }}
-          >
-            <div
-              style={{
-                transform: hoveredIndex === 3 ? 'skewX(15deg) translateX(0)' : 'skewX(15deg) translateX(100%)',
-                transition: 'transform 0.5s ease-out'
-              }}
-              className="text-center max-w-full px-4"
-            >
-              <img src="/icon.png" alt="Icon" className="w-15 h-15 mx-auto mb-3" />
-              <h3 className="text-white text-2xl font-bold mb-2 underline decoration-white decoration-2 break-words font-[family-name:var(--font-jaini-purva)]">
-                {imageData[3].title}
-              </h3>
-              <p className="text-white/90 text-sm leading-relaxed break-words font-[family-name:var(--font-jaini-purva)]">
-                {imageData[3].description}
-              </p>
-            </div>
-          </div>
+          <DetailCard
+            isVisible={hoveredIndex === 3}
+            title={imageData[3].title}
+            description={imageData[3].description}
+          />
         </a>
       </div>
 
@@ -387,28 +374,11 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
             }`}
           />
           {/* Description Overlay */}
-          <div
-            className={`absolute inset-0 flex flex-col justify-center items-center p-6 transition-opacity duration-500 ${
-              hoveredIndex === 4 ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ transform: 'skewX(-15deg)', width: hoveredIndex === 4 ? '360px' : '210px', transition: 'width 0.5s ease-out' }}
-          >
-            <div
-              style={{
-                transform: hoveredIndex === 4 ? 'skewX(15deg) translateX(0)' : 'skewX(15deg) translateX(100%)',
-                transition: 'transform 0.5s ease-out'
-              }}
-              className="text-center max-w-full px-4"
-            >
-              <img src="/icon.png" alt="Icon" className="w-15 h-15 mx-auto mb-3" />
-              <h3 className="text-white text-2xl font-bold mb-2 underline decoration-white decoration-2 break-words font-[family-name:var(--font-jaini-purva)]">
-                {imageData[4].title}
-              </h3>
-              <p className="text-white/90 text-sm leading-relaxed break-words font-[family-name:var(--font-jaini-purva)]">
-                {imageData[4].description}
-              </p>
-            </div>
-          </div>
+          <DetailCard
+            isVisible={hoveredIndex === 4}
+            title={imageData[4].title}
+            description={imageData[4].description}
+          />
         </a>
       </div>
 
@@ -453,28 +423,11 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
             }`}
           />
           {/* Description Overlay */}
-          <div
-            className={`absolute inset-0 flex flex-col justify-center items-center p-6 transition-opacity duration-500 ${
-              hoveredIndex === 5 ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ transform: 'skewX(-15deg)', width: hoveredIndex === 5 ? '360px' : '210px', transition: 'width 0.5s ease-out' }}
-          >
-            <div
-              style={{
-                transform: hoveredIndex === 5 ? 'skewX(15deg) translateX(0)' : 'skewX(15deg) translateX(100%)',
-                transition: 'transform 0.5s ease-out'
-              }}
-              className="text-center max-w-full px-4"
-            >
-              <img src="/icon.png" alt="Icon" className="w-15 h-15 mx-auto mb-3" />
-              <h3 className="text-white text-2xl font-bold mb-2 underline decoration-white decoration-2 break-words font-[family-name:var(--font-jaini-purva)]">
-                {imageData[5].title}
-              </h3>
-              <p className="text-white/90 text-sm leading-relaxed break-words font-[family-name:var(--font-jaini-purva)]">
-                {imageData[5].description}
-              </p>
-            </div>
-          </div>
+          <DetailCard
+            isVisible={hoveredIndex === 5}
+            title={imageData[5].title}
+            description={imageData[5].description}
+          />
         </a>
       </div>
 
@@ -520,28 +473,11 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
             }`}
           />
           {/* Description Overlay */}
-          <div
-            className={`absolute inset-0 flex flex-col justify-center items-center p-6 transition-opacity duration-500 ${
-              hoveredIndex === 6 ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ transform: 'skewX(-15deg)', width: hoveredIndex === 6 ? '360px' : '220px', transition: 'width 0.5s ease-out' }}
-          >
-            <div
-              style={{
-                transform: hoveredIndex === 6 ? 'skewX(15deg) translateX(0)' : 'skewX(15deg) translateX(100%)',
-                transition: 'transform 0.5s ease-out'
-              }}
-              className="text-center max-w-full px-4"
-            >
-              <img src="/icon.png" alt="Icon" className="w-15 h-15 mx-auto mb-3" />
-              <h3 className="text-white text-2xl font-bold mb-2 underline decoration-white decoration-2 break-words font-[family-name:var(--font-jaini-purva)]">
-                {imageData[6].title}
-              </h3>
-              <p className="text-white/90 text-sm leading-relaxed break-words font-[family-name:var(--font-jaini-purva)]">
-                {imageData[6].description}
-              </p>
-            </div>
-          </div>
+          <DetailCard
+            isVisible={hoveredIndex === 6}
+            title={imageData[6].title}
+            description={imageData[6].description}
+          />
         </a>
       </div>
     </div>
