@@ -1,11 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarpanch:wght@800&display=swap');
+
+.sarpanch-extrabold {
+  font-family: "Sarpanch", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
 .scripture-name{
-    
     font-size: 11px!important;
     left: 2.7rem!important;
-    
 }
+
 #books{
    scale: 130%!important;
-   /* width:295px!important; */
-
 }

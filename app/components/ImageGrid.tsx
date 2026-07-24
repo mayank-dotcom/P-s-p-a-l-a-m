@@ -23,9 +23,8 @@ interface DetailCardProps {
 function DetailCard({ isVisible, title, description }: DetailCardProps) {
   return (
     <div
-      className={`absolute inset-0 flex flex-col justify-center items-center p-4 transition-opacity duration-500 z-40 ${
-        isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
-      }`}
+      className={`absolute inset-0 flex flex-col justify-center items-center p-4 transition-opacity duration-500 z-40 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
       style={{
         marginTop: '3.5rem',
       }}
@@ -81,7 +80,7 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
   // Default images with descriptions
   const defaultImageData: ImageInfo[] = [
     {
-      src: '/Ganpati.jpg',
+      src: '/Ganpati.png',
       link: '/Ganesha_lib',
       title: 'Gāṇapatya',
       description: 'Follow the path of the Gāṇapatya sect who venerate Lord Gaṇeśa as the supreme deity. Embark on a sacred journey of wisdom, intellect, and spiritual growth, honoring the divine remover of obstacles and the benevolent giver of all auspicious beginnings in life.'
@@ -111,7 +110,7 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
       description: 'Follow the ancient Saurā tradition exalting Lord Sūrya, the supreme solar deity. Align your spirit with the eternal source of light, life-giving energy, physical health, and supreme cosmic consciousness that sustains all planetary life and dispels the dark shadows of spiritual ignorance.'
     },
     {
-      src: '/Kartikeya.jpg',
+      src: '/Kartikeya.png',
       title: 'Kaumāra',
       link: '/library',
       description: 'Connect with the Kaumāra lineage dedicated to Lord Kumāra, also known as Murugan or Kārtikeya. Invoke the supreme commander of divine forces, who represents the peak of absolute courage, eternal youth, righteousness, and the ultimate spiritual victory of light over dark forces.'
@@ -127,21 +126,22 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
   const imageData: ImageInfo[] = useMemo(() => {
     return images.length === 7
       ? images.map((src, index) => ({
-          src,
-          title: defaultImageData[index]?.title || `Image ${index + 1}`,
-          description: defaultImageData[index]?.description || 'A beautiful image from the collection.',
-          link: defaultImageData[index]?.link || '/library',
-        }))
+        src,
+        title: defaultImageData[index]?.title || `Image ${index + 1}`,
+        description: defaultImageData[index]?.description || 'A beautiful image from the collection.',
+        link: defaultImageData[index]?.link || '/library',
+      }))
       : defaultImageData;
   }, [images]);
 
   return (
-    <div className="flex h-screen w-full items-center justify-center overflow-hidden bg-black">
+    <div
+      className="relative flex h-screen min-h-screen w-full items-center justify-center overflow-hidden bg-black"
+    >
       {/* Grid Item 1 */}
       <div
-        className={`relative h-full overflow-hidden border-r border-black bg-zinc-950 transition-all duration-700 ease-out group ${
-          isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-        }`}
+        className={`relative h-full overflow-hidden border-r border-black bg-zinc-950 transition-all duration-700 ease-out group ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
         style={{
           transform: 'skewX(-15deg)',
           width: hoveredIndex === 0 ? 'calc(((100% / 7) + 250px) * 3)' : 'calc((100% / 7) + 250px)',
@@ -173,9 +173,8 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
           </div>
           {/* Shadow Overlay */}
           <div
-            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${
-              hoveredIndex === 0 ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${hoveredIndex === 0 ? 'opacity-100' : 'opacity-0'
+              }`}
           />
           {/* Description Overlay */}
           <DetailCard
@@ -188,9 +187,8 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
 
       {/* Grid Item 2 */}
       <div
-        className={`relative h-full overflow-hidden border-r border-black bg-zinc-950 transition-all duration-700 ease-out group ${
-          isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-        }`}
+        className={`relative h-full overflow-hidden border-r border-black bg-zinc-950 transition-all duration-700 ease-out group ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
         style={{
           transform: 'skewX(-15deg)',
           width: hoveredIndex === 1 ? 'calc(((100% / 7) + 250px) * 3)' : 'calc((100% / 7) + 250px)',
@@ -222,9 +220,8 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
           </div>
           {/* Shadow Overlay */}
           <div
-            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${
-              hoveredIndex === 1 ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${hoveredIndex === 1 ? 'opacity-100' : 'opacity-0'
+              }`}
           />
           {/* Description Overlay */}
           <DetailCard
@@ -237,9 +234,8 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
 
       {/* Grid Item 3 */}
       <div
-        className={`relative h-full overflow-hidden border-r border-black bg-zinc-950 transition-all duration-700 ease-out group ${
-          isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-        }`}
+        className={`relative h-full overflow-hidden border-r border-black bg-zinc-950 transition-all duration-700 ease-out group ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
         style={{
           transform: 'skewX(-15deg)',
           width: hoveredIndex === 2 ? 'calc(((100% / 7) + 250px) * 3)' : 'calc((100% / 7) + 250px)',
@@ -271,9 +267,8 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
           </div>
           {/* Shadow Overlay */}
           <div
-            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${
-              hoveredIndex === 2 ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${hoveredIndex === 2 ? 'opacity-100' : 'opacity-0'
+              }`}
           />
           {/* Description Overlay */}
           <DetailCard
@@ -286,9 +281,8 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
 
       {/* Grid Item 4 */}
       <div
-        className={`relative h-full overflow-hidden border-r border-black bg-zinc-950 transition-all duration-700 ease-out group ${
-          isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-        }`}
+        className={`relative h-full overflow-hidden border-r border-black bg-zinc-950 transition-all duration-700 ease-out group ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
         style={{
           transform: 'skewX(-15deg)',
           width: hoveredIndex === 3 ? 'calc(((100% / 7) + 250px) * 3)' : 'calc((100% / 7) + 250px)',
@@ -320,9 +314,8 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
           </div>
           {/* Shadow Overlay */}
           <div
-            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${
-              hoveredIndex === 3 ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${hoveredIndex === 3 ? 'opacity-100' : 'opacity-0'
+              }`}
           />
           {/* Description Overlay */}
           <DetailCard
@@ -335,9 +328,8 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
 
       {/* Grid Item 5 */}
       <div
-        className={`relative h-full overflow-hidden border-r border-black bg-zinc-950 transition-all duration-700 ease-out group ${
-          isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-        }`}
+        className={`relative h-full overflow-hidden border-r border-black bg-zinc-950 transition-all duration-700 ease-out group ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
         style={{
           transform: 'skewX(-15deg)',
           width: hoveredIndex === 4 ? 'calc(((100% / 7) + 250px) * 3)' : 'calc((100% / 7) + 250px)',
@@ -369,9 +361,8 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
           </div>
           {/* Shadow Overlay */}
           <div
-            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${
-              hoveredIndex === 4 ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${hoveredIndex === 4 ? 'opacity-100' : 'opacity-0'
+              }`}
           />
           {/* Description Overlay */}
           <DetailCard
@@ -384,9 +375,8 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
 
       {/* Grid Item 6 */}
       <div
-        className={`relative h-full overflow-hidden border-r border-black bg-zinc-950 transition-all duration-700 ease-out group ${
-          isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-        }`}
+        className={`relative h-full overflow-hidden border-r border-black bg-zinc-950 transition-all duration-700 ease-out group ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
         style={{
           transform: 'skewX(-15deg)',
           width: hoveredIndex === 5 ? 'calc(((100% / 7) + 250px) * 3)' : 'calc((100% / 7) + 250px)',
@@ -418,9 +408,8 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
           </div>
           {/* Shadow Overlay */}
           <div
-            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${
-              hoveredIndex === 5 ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${hoveredIndex === 5 ? 'opacity-100' : 'opacity-0'
+              }`}
           />
           {/* Description Overlay */}
           <DetailCard
@@ -433,9 +422,8 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
 
       {/* Grid Item 7 */}
       <div
-        className={`relative h-full overflow-hidden bg-zinc-950 transition-all duration-700 ease-out group ${
-          isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-        }`}
+        className={`relative h-full overflow-hidden bg-zinc-950 transition-all duration-700 ease-out group ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
         style={{
           transform: 'skewX(-15deg)',
           width: hoveredIndex === 6 ? 'calc(((100% / 7) + 250px) * 3)' : 'calc((100% / 7) + 250px)',
@@ -468,9 +456,8 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
           </div>
           {/* Shadow Overlay */}
           <div
-            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${
-              hoveredIndex === 6 ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${hoveredIndex === 6 ? 'opacity-100' : 'opacity-0'
+              }`}
           />
           {/* Description Overlay */}
           <DetailCard
@@ -480,6 +467,7 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
           />
         </a>
       </div>
+
     </div>
   );
 }

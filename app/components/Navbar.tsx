@@ -29,7 +29,7 @@ export default function Navbar() {
     <>
       {/* Pill-shaped Floating Navbar */}
       <nav
-        className={`fixed top-12 left-1/2 -translate-x-1/2 z-100 transition-all duration-1000 ease-out ${
+        className={`absolute top-12 left-1/2 -translate-x-1/2 z-[100] transition-all duration-1000 ease-out ${
           isVisible ? 'opacity-100' : 'opacity-0'
         } ${
           scrolled 
@@ -116,7 +116,7 @@ export default function Navbar() {
       {/* Mobile Menu - Floating Pill */}
       {mobileMenuOpen && (
         <div
-          className="fixed top-28 left-1/2 -translate-x-1/2 z-40 md:hidden backdrop-blur-xl bg-white/10 shadow-2xl shadow-black/20 animate-in fade-in slide-in-from-top-5 duration-300"
+          className="absolute top-28 left-1/2 -translate-x-1/2 z-40 md:hidden backdrop-blur-xl bg-white/10 shadow-2xl shadow-black/20 animate-in fade-in slide-in-from-top-5 duration-300"
           style={{
             borderRadius: '30px',
             border: '1px solid rgba(255, 255, 255, 0.1)',

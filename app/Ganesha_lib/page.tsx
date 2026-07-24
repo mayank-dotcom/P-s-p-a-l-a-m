@@ -238,22 +238,81 @@ export default function LibraryPage() {
   return (
     <div className="w-full min-h-screen overflow-x-hidden overflow-y-auto relative bg-black" onMouseMove={(e) => console.log('Mouse move on page:', e.clientX, e.clientY)}>
       <audio ref={audioRef} src="/Ganesh_theme.webm" preload="aumkoto" style={{ display: 'none' }} />
+
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex flex-col md:flex-row items-center justify-between px-8 md:px-16 lg:px-24 py-12 z-20">
+      <section 
+        className="relative w-full min-h-[115vh] flex flex-col md:flex-row items-center justify-between px-8 md:px-16 lg:px-24 py-12 z-20 bg-white"
+      >
+        {/* Red Top Bar inside hero */}
+        <div className="absolute top-0 left-0 w-[70%] h-full bg-[#8B0000] z-[-1]"></div>
+        {/* Background image with lowest z-index */}
+        <img 
+          src="/Ganesha/torn_page.png" 
+          alt="Torn page background" 
+          className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+        />
+        {/* Full-width ocean image at the bottom of the hero section */}
+        <img 
+          src="/Ganesha/ocean.png" 
+          alt="Ocean background" 
+          className="absolute bottom-0 left-0 w-full h-[115vh] object-cover z-0 pointer-events-none"
+        />
+
         {/* Left Side Image */}
-        <div className="w-full md:w-1/2 flex justify-center md:justify-start items-center">
+        <div className="w-full md:w-1/2 flex justify-center md:justify-start items-center relative z-10 pl-0 md:pl-[2vw]">
+          {/* Clean Ganesha image */}
           <img 
             src="/Ganesha/clean_ganesha.png" 
             alt="Clean Ganesha" 
-            className="max-h-[85vh] w-auto object-contain drop-shadow-2xl"
+            className="max-h-[95vh] max-w-[90vw] md:max-w-[48vw] w-auto object-contain drop-shadow-2xl relative z-10"
+            style={{ transform: 'translateY(-3.5vh)' }}
           />
         </div>
-        {/* Right Side - Blank background as requested */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center items-start">
+        {/* Right Side - Ganesha Seed Mantra */}
+        <div className="w-full md:w-1/2 flex flex-col justify-start items-center md:items-start relative z-10 pl-0 md:pl-[8vw] pt-[0vh] md:pt-[2vh]" style={{ transform: 'translateY(-8vh)' }}>
+          <span 
+            className="sarpanch-extrabold text-transparent text-[35vw] md:text-[20vw] leading-none select-none"
+            style={{ WebkitTextStroke: '2px black' }}
+          >
+            गं
+          </span>
         </div>
       </section>
+
+      {/* Curvy Frequency Wave Boundary Divider */}
+      <div className="relative w-full overflow-hidden leading-none select-none -my-6 z-30 pointer-events-none">
+        <svg
+          className="relative block w-full h-16 md:h-24"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          fill="none"
+        >
+          {/* Fill transition */}
+          <path
+            d="M 0,70 C 50,55 150,85 200,70 C 250,62 350,78 400,70 C 450,48 550,92 600,70 C 650,60 750,80 800,70 C 850,52 950,88 1000,70 C 1050,64 1150,76 1200,70 C 1260,55 1380,85 1440,70 L 1440,120 L 0,120 Z"
+            fill="#050508"
+          />
+          {/* Single Glowing Golden Organic Wave Line */}
+          <path
+            d="M 0,70 C 50,55 150,85 200,70 C 250,62 350,78 400,70 C 450,48 550,92 600,70 C 650,60 750,80 800,70 C 850,52 950,88 1000,70 C 1050,64 1150,76 1200,70 C 1260,55 1380,85 1440,70"
+            stroke="url(#ganeshaGradient)"
+            strokeWidth="3"
+            className="filter drop-shadow-[0_0_14px_rgba(244,114,182,0.85)]"
+          />
+
+          <defs>
+            <linearGradient id="ganeshaGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#f472b6" />
+              <stop offset="25%" stopColor="#fcd34d" />
+              <stop offset="50%" stopColor="#e5c158" />
+              <stop offset="75%" stopColor="#ec4899" />
+              <stop offset="100%" stopColor="#f472b6" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
 
       {/* Secondary Section (Original Interactive Ganesha Section) */}
       <section className="relative w-full min-h-screen overflow-hidden">
@@ -325,7 +384,8 @@ export default function LibraryPage() {
         <img 
           src="/hand.png" 
           alt="Ganesh left hand 1" 
-          style={{ scale:"175%", objectFit: 'contain',transform: "rotate(-25deg)" }}
+          className="w-[18vw] h-auto object-contain"
+          style={{ objectFit: 'contain', transform: "rotate(-25deg) scale(4.5)" }}
         />
       </div>
       
@@ -345,8 +405,8 @@ export default function LibraryPage() {
         <img 
           src="/hand.png" 
           alt="Ganesh left hand 2" 
-          style={{  objectFit: 'contain' ,transform: "rotate(-60deg)" ,scale:"200%"}}
-
+          className="w-[18vw] h-auto object-contain"
+          style={{ objectFit: 'contain', transform: "rotate(-60deg) scale(5.0)" }}
         />
       </div>
       
@@ -366,7 +426,8 @@ export default function LibraryPage() {
         <img 
           src="/hand.png" 
           alt="Ganesh left hand 3" 
-          style={{scale:"140%", objectFit: 'contain' ,transform: "rotate(-85deg)" }}
+          className="w-[18vw] h-auto object-contain"
+          style={{ objectFit: 'contain', transform: "rotate(-85deg) scale(4.0)" }}
         />
       </div>
 
@@ -387,7 +448,8 @@ export default function LibraryPage() {
         <img 
           src="/hand.png" 
           alt="Ganesh right hand 1" 
-          style={{ scale:"120%", objectFit: 'contain', transform: 'scaleX(-1)rotate(-80deg)' }}
+          className="w-[18vw] h-auto object-contain"
+          style={{ objectFit: 'contain', transform: 'scaleX(-1) rotate(-80deg) scale(3.5)' }}
         />
       </div>
       
@@ -397,7 +459,7 @@ export default function LibraryPage() {
         style={{
           position: 'absolute',
           top: '35%',
-          left :'34%',
+          left :'36%',
           zIndex: 3,
           opacity: cloudsAnimationComplete ? 1 : 0,
           visibility: cloudsAnimationComplete ? 'visible' : 'hidden',
@@ -407,7 +469,8 @@ export default function LibraryPage() {
         <img 
           src="/hand.png" 
           alt="Ganesh right hand 2" 
-          style={{  objectFit: 'contain', transform: 'scaleX(-1) rotate(-60deg)',scale:"120%" }}
+          className="w-[18vw] h-auto object-contain"
+          style={{ objectFit: 'contain', transform: 'scaleX(-1) rotate(-60deg) scale(3.5)' }}
         />
       </div>
       
@@ -427,7 +490,8 @@ export default function LibraryPage() {
         <img 
           src="/hand.png" 
           alt="Ganesh right hand 3" 
-          style={{  objectFit: 'contain', transform: 'scaleX(-1) rotate(-24deg)',scale:"130%" }}
+          className="w-[18vw] h-auto object-contain"
+          style={{ objectFit: 'contain', transform: 'scaleX(-1) rotate(-24deg) scale(3.8)' }}
         />
       </div>
 
@@ -825,7 +889,7 @@ export default function LibraryPage() {
           }
           100% {
             opacity: 1;
-            transform: translate(-50%, -50%) rotate(-120deg) translateX(250px) rotate(120deg);
+            transform: translate(-50%, -50%) rotate(-120deg) translateX(18vw) rotate(120deg);
           }
         }
 
@@ -839,7 +903,7 @@ export default function LibraryPage() {
           }
           100% {
             opacity: 1;
-            transform: translate(-50%, -50%) rotate(-180deg) translateX(280px) rotate(180deg);
+            transform: translate(-50%, -50%) rotate(-180deg) translateX(20vw) rotate(180deg);
           }
         }
 
@@ -853,7 +917,7 @@ export default function LibraryPage() {
           }
           100% {
             opacity: 1;
-            transform: translate(-50%, -50%) rotate(-240deg) translateX(250px) rotate(240deg);
+            transform: translate(-50%, -50%) rotate(-240deg) translateX(18vw) rotate(240deg);
           }
         }
 
@@ -868,7 +932,7 @@ export default function LibraryPage() {
           }
           100% {
             opacity: 1;
-            transform: translate(-50%, -50%) rotate(60deg) translateX(250px) rotate(-60deg);
+            transform: translate(-50%, -50%) rotate(60deg) translateX(18vw) rotate(-60deg);
           }
         }
 
@@ -882,7 +946,7 @@ export default function LibraryPage() {
           }
           100% {
             opacity: 1;
-            transform: translate(-50%, -50%) rotate(0deg) translateX(280px) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg) translateX(21.5vw) rotate(0deg);
           }
         }
 
@@ -896,7 +960,7 @@ export default function LibraryPage() {
           }
           100% {
             opacity: 1;
-            transform: translate(-50%, -50%) rotate(-60deg) translateX(250px) rotate(60deg);
+            transform: translate(-50%, -50%) rotate(-60deg) translateX(18vw) rotate(60deg);
           }
         }
 

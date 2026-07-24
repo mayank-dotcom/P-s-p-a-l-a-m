@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 const jainiPurva = Jaini_Purva({
   variable: "--font-jaini-purva",
-  subsets: ["latin"],
+  subsets: ["latin", "devanagari"],
   weight: "400",
 });
 

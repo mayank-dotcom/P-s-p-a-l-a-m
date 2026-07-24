@@ -58,12 +58,12 @@ export default function TextMorph() {
           .split('')
           .map((char, index) => {
             if (char === ' ') return ' ';
-            
+
             // All characters decrypt simultaneously with increasing probability
             if (Math.random() < iteration / maxIterations) {
               return finalText[index];
             }
-            
+
             // Scramble unrevealed characters with Indian language chars
             return allChars[Math.floor(Math.random() * allChars.length)];
           })
@@ -80,9 +80,9 @@ export default function TextMorph() {
   };
 
   return (
-    <div 
+    <div
       ref={containerRef}
-      className="fixed top-32 left-1/2 -translate-x-1/2 z-50 pointer-events-none"
+      className="absolute top-32 left-1/2 -translate-x-1/2 z-50 pointer-events-none"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -102,7 +102,7 @@ export default function TextMorph() {
             filter: 'drop-shadow(0 0 30px rgba(168, 85, 247, 0.6))',
           }}
         />
-        
+
         {/* Main morphing text */}
         <h1
           className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-purple-300 via-pink-300 to-purple-300 bg-clip-text text-transparent"
@@ -114,7 +114,7 @@ export default function TextMorph() {
         >
           {displayText}
         </h1>
-        
+
         {/* Glow effect */}
         <div
           className="absolute inset-0 text-6xl md:text-8xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent blur-2xl opacity-60 -z-10"

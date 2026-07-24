@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import ImageGrid from './components/ImageGrid';
 import Navbar from './components/Navbar';
 import TextMorph from './components/TextMorph';
+import Footer from './components/Footer';
 import { Volume2, VolumeX } from 'lucide-react';
 
 export default function Home() {
@@ -119,7 +120,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-900">
+    <div className="min-h-screen bg-zinc-900 relative overflow-x-hidden">
       {/* Small speaker button - always visible */}
       <button
         onClick={toggleAudio}
@@ -136,6 +137,7 @@ export default function Home() {
       <Navbar />
       <TextMorph />
       <ImageGrid onSegmentHover={handleSegmentHover} />
+      <Footer />
     </div>
   );
 }

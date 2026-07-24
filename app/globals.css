@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Kameron:wght@400;700&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -16,4 +17,63 @@ body {
     color: var(--foreground);
     background: var(--background);
     font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Prevent browser autofill suggestions from altering input CSS / text color / background */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-text-fill-color: #76283B !important;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+    caret-color: #76283B !important;
+}
+
+/* Sequential Purple-Pink Glow Animation matching Saṃgraha text */
+@keyframes icon-ray-pulse {
+  0%, 65%, 100% {
+    box-shadow: 0 0 8px rgba(192, 132, 252, 0.25);
+    filter: drop-shadow(0 0 3px rgba(249, 168, 212, 0.4));
+    background-color: rgba(24, 19, 36, 0.9);
+    color: #d8b4fe;
+    transform: scale(1);
+  }
+  12% {
+    box-shadow: 0 0 20px rgba(192, 132, 252, 0.6), 0 0 35px rgba(249, 168, 212, 0.5);
+    filter: drop-shadow(0 0 12px #c084fc);
+    background-color: rgba(192, 132, 252, 0.6);
+    color: #ffffff;
+    transform: scale(1.12);
+  }
+  22%, 35% {
+    box-shadow: 0 0 38px #c084fc, 0 0 60px #f472b6, 0 0 80px rgba(249, 168, 212, 0.95);
+    filter: drop-shadow(0 0 28px #c084fc);
+    background-color: #c084fc;
+    color: #08070D;
+    transform: scale(1.28);
+  }
+  48% {
+    box-shadow: 0 0 18px rgba(192, 132, 252, 0.5);
+    filter: drop-shadow(0 0 10px #f472b6);
+    background-color: rgba(24, 19, 36, 0.9);
+    color: #d8b4fe;
+    transform: scale(1.08);
+  }
+}
+
+.social-ray-icon-1 {
+  animation: icon-ray-pulse 9s infinite 0s ease-in-out !important;
+}
+.social-ray-icon-2 {
+  animation: icon-ray-pulse 9s infinite 1.8s ease-in-out !important;
+}
+.social-ray-icon-3 {
+  animation: icon-ray-pulse 9s infinite 3.6s ease-in-out !important;
+}
+.social-ray-icon-4 {
+  animation: icon-ray-pulse 9s infinite 5.4s ease-in-out !important;
+}
+.social-ray-icon-5 {
+  animation: icon-ray-pulse 9s infinite 7.2s ease-in-out !important;
 }
