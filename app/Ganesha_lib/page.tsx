@@ -281,38 +281,7 @@ export default function LibraryPage() {
         </div>
       </section>
 
-      {/* Curvy Frequency Wave Boundary Divider */}
-      <div className="relative w-full overflow-hidden leading-none select-none -my-6 z-30 pointer-events-none">
-        <svg
-          className="relative block w-full h-16 md:h-24"
-          viewBox="0 0 1440 120"
-          preserveAspectRatio="none"
-          fill="none"
-        >
-          {/* Fill transition */}
-          <path
-            d="M 0,70 C 50,55 150,85 200,70 C 250,62 350,78 400,70 C 450,48 550,92 600,70 C 650,60 750,80 800,70 C 850,52 950,88 1000,70 C 1050,64 1150,76 1200,70 C 1260,55 1380,85 1440,70 L 1440,120 L 0,120 Z"
-            fill="#050508"
-          />
-          {/* Single Glowing Golden Organic Wave Line */}
-          <path
-            d="M 0,70 C 50,55 150,85 200,70 C 250,62 350,78 400,70 C 450,48 550,92 600,70 C 650,60 750,80 800,70 C 850,52 950,88 1000,70 C 1050,64 1150,76 1200,70 C 1260,55 1380,85 1440,70"
-            stroke="url(#ganeshaGradient)"
-            strokeWidth="3"
-            className="filter drop-shadow-[0_0_14px_rgba(244,114,182,0.85)]"
-          />
 
-          <defs>
-            <linearGradient id="ganeshaGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#f472b6" />
-              <stop offset="25%" stopColor="#fcd34d" />
-              <stop offset="50%" stopColor="#e5c158" />
-              <stop offset="75%" stopColor="#ec4899" />
-              <stop offset="100%" stopColor="#f472b6" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
 
       {/* Secondary Section (Original Interactive Ganesha Section) */}
       <section className="relative w-full min-h-screen overflow-hidden">
