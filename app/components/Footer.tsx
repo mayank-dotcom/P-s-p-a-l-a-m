@@ -6,6 +6,7 @@ import {
   ArrowRight,
   Shield,
   Instagram,
+  Facebook,
 } from 'lucide-react';
 import YoutubeIcon from '@iconify-react/mdi/youtube';
 import XTwitterIcon from '@iconify-react/fa6-brands/x-twitter';
@@ -409,7 +410,7 @@ export default function Footer() {
                       </a>
                       <a 
                         href="#" 
-                        style={{ transform: 'rotate(146deg) translateY(-180px) rotate(-146deg)' }}
+                        style={{ transform: 'rotate(120deg) translateY(-155px) rotate(-120deg) translateX(-6px)' }}
                         className="absolute z-10"
                         aria-label="Instagram"
                       >
@@ -419,11 +420,21 @@ export default function Footer() {
                       </a>
                       <a 
                         href="#" 
-                        style={{ transform: 'rotate(214deg) translateY(-180px) rotate(-214deg)' }}
+                        style={{ transform: 'rotate(180deg) translateY(-180px) rotate(-180deg)' }}
+                        className="absolute z-10"
+                        aria-label="Facebook"
+                      >
+                        <div className="social-ray-icon-4 w-11 h-11 rounded-full border border-purple-400/40 flex items-center justify-center shadow-xl shadow-black/60 transition-transform duration-300 hover:scale-130 cursor-pointer">
+                          <Facebook className="w-5 h-5" />
+                        </div>
+                      </a>
+                      <a 
+                        href="#" 
+                        style={{ transform: 'rotate(240deg) translateY(-155px) rotate(-240deg) translateX(6px)' }}
                         className="absolute z-10"
                         aria-label="Reddit"
                       >
-                        <div className="social-ray-icon-4 w-11 h-11 rounded-full border border-purple-400/40 flex items-center justify-center shadow-xl shadow-black/60 transition-transform duration-300 hover:scale-130 cursor-pointer">
+                        <div className="social-ray-icon-5 w-11 h-11 rounded-full border border-purple-400/40 flex items-center justify-center shadow-xl shadow-black/60 transition-transform duration-300 hover:scale-130 cursor-pointer">
                           <RedditIcon height="1.3em" />
                         </div>
                       </a>
@@ -433,7 +444,7 @@ export default function Footer() {
                         className="absolute z-10"
                         aria-label="Contact Email"
                       >
-                        <div className="social-ray-icon-5 w-11 h-11 rounded-full border border-purple-400/40 flex items-center justify-center shadow-xl shadow-black/60 transition-transform duration-300 hover:scale-130 cursor-pointer">
+                        <div className="social-ray-icon-6 w-11 h-11 rounded-full border border-purple-400/40 flex items-center justify-center shadow-xl shadow-black/60 transition-transform duration-300 hover:scale-130 cursor-pointer">
                           <Mail className="w-5 h-5" />
                         </div>
                       </a>

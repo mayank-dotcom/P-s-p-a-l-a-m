@@ -66,14 +66,17 @@ input:-webkit-autofill:active {
   animation: icon-ray-pulse 9s infinite 0s ease-in-out !important;
 }
 .social-ray-icon-2 {
-  animation: icon-ray-pulse 9s infinite 1.8s ease-in-out !important;
+  animation: icon-ray-pulse 9s infinite 1.5s ease-in-out !important;
 }
 .social-ray-icon-3 {
-  animation: icon-ray-pulse 9s infinite 3.6s ease-in-out !important;
+  animation: icon-ray-pulse 9s infinite 3.0s ease-in-out !important;
 }
 .social-ray-icon-4 {
-  animation: icon-ray-pulse 9s infinite 5.4s ease-in-out !important;
+  animation: icon-ray-pulse 9s infinite 4.5s ease-in-out !important;
 }
 .social-ray-icon-5 {
-  animation: icon-ray-pulse 9s infinite 7.2s ease-in-out !important;
+  animation: icon-ray-pulse 9s infinite 6.0s ease-in-out !important;
+}
+.social-ray-icon-6 {
+  animation: icon-ray-pulse 9s infinite 7.5s ease-in-out !important;
 }
