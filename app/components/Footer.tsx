@@ -121,7 +121,7 @@ export default function Footer() {
 
                   {/* Description */}
                   <p className="text-neutral-300 text-xs md:text-xs xl:text-sm 2xl:text-base leading-relaxed mb-6 font-normal">
-                    Samgraha is a dedicated digital sanctuary preserving classical Sanskrit scriptures, Vedic mantras, and philosophical lineages of India through modern interactive design and authentic reverence.
+                    Saṃgraha is a dedicated digital sanctuary preserving classical Sanskrit scriptures, Vedic mantras, palm-leaf manuscripts, and philosophical lineages of India through modern interactive design, high-fidelity audio recitations, and authentic reverence. Our mission is to bridge ancient wisdom with modern technology, providing scholars, seekers, and devotees worldwide with unhindered access to authentic commentaries, original Devanagari texts, Sanskrit grammar tools, and rare stotram traditions preserved across centuries of Sanātana Dharma.
                   </p>
 
                   {/* Stacked Devanagari Mantra with Ornamental Lines */}
@@ -136,6 +136,11 @@ export default function Footer() {
                       <p>न हि ज्ञानेन सदृशं पवित्रमिह विद्यते ।</p>
                       <p>तत्स्वयं योगसंसिद्धः कालेनात्मनि विन्दति ॥</p>
                     </div>
+
+                    {/* Philosophical English Translation */}
+                    <p className="text-[#E5C158] text-[11px] sm:text-xs italic mt-2.5 leading-relaxed px-2 drop-shadow-[0_1px_4px_rgba(229,193,88,0.25)] font-medium">
+                      &quot;In this world, there is nothing as purifying as transcendental knowledge. One who has attained perfection through yoga discovers this divine truth naturally within the Self in due course of time.&quot; — Śrīmad Bhagavad Gītā (4.38)
+                    </p>
 
                     <div className="flex items-center justify-center gap-2 mt-2 w-full">
                       <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-[#D4AF37]/40" />
@@ -225,15 +230,25 @@ export default function Footer() {
                         </Link>
                         {idx < arr.length - 1 && (
                           <div className="relative flex items-center my-2.5 px-0.5">
-                            {/* Left Arrowhead (Bow & Arrow style pointing Left) */}
+                            {/* Left Arrowhead */}
                             <svg className="w-2 h-2 text-[#D4AF37]/45 shrink-0" viewBox="0 0 24 24" fill="currentColor">
                               <path d="M4,12 L20,6 L15,12 L20,18 Z" />
                             </svg>
 
-                            {/* Center Divider line */}
-                            <div className="h-[1px] flex-grow bg-gradient-to-r from-[#D4AF37]/35 via-[#D4AF37]/10 to-[#D4AF37]/35 mx-1" />
+                            {/* Left line */}
+                            <div className="h-[1px] flex-grow bg-gradient-to-r from-[#D4AF37]/35 to-[#D4AF37]/10 mx-1" />
 
-                            {/* Right Arrowhead (Bow & Arrow style pointing Right) */}
+                            {/* Center Golden Lotus */}
+                            <img
+                              src="/goldenlotus.png"
+                              alt=""
+                              className="w-6 h-6 shrink-0 object-contain drop-shadow-[0_0_6px_rgba(229,193,88,0.6)]"
+                            />
+
+                            {/* Right line */}
+                            <div className="h-[1px] flex-grow bg-gradient-to-l from-[#D4AF37]/35 to-[#D4AF37]/10 mx-1" />
+
+                            {/* Right Arrowhead */}
                             <svg className="w-2 h-2 text-[#D4AF37]/45 shrink-0 rotate-180" viewBox="0 0 24 24" fill="currentColor">
                               <path d="M4,12 L20,6 L15,12 L20,18 Z" />
                             </svg>
@@ -284,7 +299,7 @@ export default function Footer() {
                 </h4>
 
                 <p className="text-neutral-300 text-xs md:text-xs xl:text-sm 2xl:text-base leading-relaxed mb-4">
-                  Receive curated translations of rare stotrams, Vedic astronomical updates, and festival lore directly to your inbox.
+                  Subscribe to our sacred circle of wisdom to receive authentic English translations of rare stotrams, Vedic astronomical Panchanga calendar updates, festival lore, Sanskrit linguistic insights, and monthly manuscript release notes delivered directly to your inbox.
                 </p>
 
                 {/* Contact Image with Overlayed Email Input & Button */}
@@ -369,7 +384,7 @@ export default function Footer() {
                 </h4>
 
                 <p className="text-neutral-300 text-xs md:text-xs xl:text-sm 2xl:text-base leading-relaxed mb-3">
-                  Follow our digital sanctuary for daily stotrams, manuscript revelations, and Vedic wisdom updates.
+                  Connect with our global digital sanctuary across community channels for daily stotram verses, ancient manuscript revelations, interactive Sanskrit learning sessions, Vedic wisdom updates, and spiritual discourses with traditional scholars.
                 </p>
 
                 {/* Yogi Image Container with Centered Vertical Social Icons */}

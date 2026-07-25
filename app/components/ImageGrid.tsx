@@ -26,7 +26,7 @@ function DetailCard({ isVisible, title, description }: DetailCardProps) {
       className={`absolute inset-0 flex flex-col justify-center items-center p-4 transition-opacity duration-500 z-40 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       style={{
-        marginTop: '3.5rem',
+        marginTop: '1.5rem',
       }}
     >
       {/* Shared relative wrapper to sync animations and positioning */}
@@ -35,10 +35,10 @@ function DetailCard({ isVisible, title, description }: DetailCardProps) {
           transform: isVisible ? 'skewX(15deg) scale(1)' : 'skewX(15deg) scale(0.95)',
           transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
-        className="relative w-[420px] max-w-[90vw] aspect-[1.05]"
+        className="relative w-[450px] max-w-[92vw] aspect-[0.74] sm:aspect-[0.76]"
       >
-        {/* Blur element - positioned behind the card (z-0) with reduced height from top */}
-        <div className="absolute inset-x-8 top-16 bottom-8 rounded-[24px] backdrop-blur-sm pointer-events-none z-0" />
+        {/* Blur element - scaled down behind the card (z-0) */}
+        <div className="absolute inset-x-10 top-24 bottom-12 rounded-[24px] backdrop-blur-md scale-90 pointer-events-none z-0" />
 
         {/* Card element - rendered on top of the blur (z-10) with sharp card.png */}
         <div
@@ -48,17 +48,17 @@ function DetailCard({ isVisible, title, description }: DetailCardProps) {
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
           }}
-          className="absolute inset-0 p-10 flex flex-col justify-center items-center text-center shadow-2xl z-10"
+          className="absolute inset-0 p-8 sm:p-10 flex flex-col justify-center items-center text-center shadow-2xl z-10"
         >
           {/* Card Content */}
-          <div className="w-full flex flex-col items-center justify-center my-auto px-6">
+          <div className="w-full flex flex-col items-center justify-center my-auto px-4 sm:px-6">
             {/* Title */}
-            <h3 className="text-[#FFE5A3] text-3xl font-bold tracking-wide font-[family-name:var(--font-jaini-purva)] drop-shadow-[0_2px_8px_rgba(200,147,62,0.35)] mb-4">
+            <h3 className="text-[#FFE5A3] text-2xl sm:text-3xl font-bold tracking-wide font-[family-name:var(--font-jaini-purva)] drop-shadow-[0_2px_8px_rgba(200,147,62,0.35)] mb-3">
               {title}
             </h3>
 
             {/* Description */}
-            <p className="text-[#FFE5A3]/90 text-[15px] leading-relaxed font-sans px-4">
+            <p className="text-[#FFE5A3]/90 text-[13px] sm:text-[13.5px] leading-relaxed font-sans px-2">
               {description}
             </p>
           </div>
@@ -77,49 +77,49 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
     setIsMounted(true);
   }, []);
 
-  // Default images with descriptions
+  // Default images with comprehensive spiritual & philosophical descriptions (~80+ words each)
   const defaultImageData: ImageInfo[] = [
     {
       src: '/Ganpati.png',
       link: '/Ganesha_lib',
       title: 'Gāṇapatya',
-      description: 'Follow the path of the Gāṇapatya sect who venerate Lord Gaṇeśa as the supreme deity. Embark on a sacred journey of wisdom, intellect, and spiritual growth, honoring the divine remover of obstacles and the benevolent giver of all auspicious beginnings in life.'
+      description: 'Follow the revered path of the Gāṇapatya sect who venerate Lord Gaṇeśa not merely as a deity of auspicious beginnings, but as the supreme Unmanifest Absolute (Param-Brahman) and primeval cause of all existence. Grounded in sacred texts like the Ganesha Purana, Mudgala Purana, and Ganapati Atharvashirsha Upanishad, this tradition guides seekers to transcend material obstacles (Vighna), awaken the root Muladhara chakra, refine intellect (Buddhi), and attain supreme auspicious liberation (Siddhi) through meditation on the divine sound Om.'
     },
     {
       src: '/Shiv.png',
       title: 'Śaiva',
       link: '/Shiva_lib',
-      description: 'Follow the sacred Śaiva tradition that reveres Lord Śiva as the ultimate, supreme cosmic principle of the universe. Seek inner peace, ultimate detachment, and profound spiritual realization through the grace of the infinite cosmic dancer who orchestrates the cycles of creation, preservation, and dissolution.'
+      description: 'Follow the ancient Śaiva tradition that reveres Lord Śiva as Paramaśiva—the ultimate, self-luminous cosmic consciousness transcending form, time, and illusion. Grounded in the sacred Śaiva Āgamas, Upanishads, and devotional hymns like Śivamahimna Stotram, this lineage emphasizes inner yoga, profound meditation, non-dual wisdom (Advaita), and detachment. Seekers surrender to the grace of Natarāja, the infinite cosmic dancer who gracefully orchestrates the eternal cycles of creation (Sṛṣṭi), preservation (Sthiti), and ultimate dissolution (Saṃhāra).'
     },
     {
       src: '/Vishnu.png',
       title: 'Vaiṣṇava',
       link: '/Vishnu_lib',
-      description: 'Adhere to the Vaiṣṇava dharma centered on Lord Viṣṇu as the ultimate source of preservation and divinity. Embrace the path of unconditional bhakti, righteous living, and cosmic harmony, meditating on the divine descents of the Lord who manifests age after age to protect the universe.'
+      description: 'Adhere to the Vaiṣṇava dharma centered on Lord Viṣṇu as the eternal preserver, cosmic protector, and supreme source of universal harmony. Grounded in the divine teachings of the Śrīmad Bhagavad Gītā, Viṣṇu Purāṇa, and Bhāgavata Purāṇa, this tradition champions the path of unconditional loving devotion (Bhakti-yoga), righteous action, and total self-surrender (Prapatti). Meditate upon the ten sacred descents (Daśāvatāra) of the Supreme Being, who manifests across cosmic epochs to subdue adharma and uphold divine truth.'
     },
     {
       src: '/Devi.png',
       title: 'Śākta',
       link: '/Devi_lib',
-      description: 'Honor the supreme Devī as the primordial power and cosmic creator in the Śākta tradition. Meditate upon the infinite flow of maternal grace, divine energy, and fierce protection, surrendering to the cosmic force of the Divine Mother who sustains and guides all living beings.'
+      description: 'Honor the supreme Devī as the primordial cosmic power (Ādyā Śakti) and divine mother of creation in the Śākta tradition. Drawing wisdom from sacred texts like the Devī Māhātmya, Lalitā Sahasranāma, and Devī Bhāgavata Purāṇa, this lineage reveres the divine feminine as the active energy animating all consciousness. Meditate upon the infinite flow of maternal grace, the awakening of Kundalini energy, and Her fierce protection against ignorance, surrendering to the cosmic force that sustains and liberates all living beings.'
     },
     {
       src: '/Surya.png',
       title: 'Saurā',
       link: '/Surya_lib',
-      description: 'Follow the ancient Saurā tradition exalting Lord Sūrya, the supreme solar deity. Align your spirit with the eternal source of light, life-giving energy, physical health, and supreme cosmic consciousness that sustains all planetary life and dispels the dark shadows of spiritual ignorance.'
+      description: 'Follow the ancient Saurā tradition exalting Lord Sūrya as Pratyakṣa Devatā—the visible, radiant manifestation of the Supreme Brahman and soul of the cosmos (Sūryātmā). Drawing deep illumination from Rigvedic solar hymns and the Āditya Hṛdayam Stotram, this sacred path aligns human vitality with divine solar energy. Through morning Sandhyāvandanam, Gayatri japa, and solar contemplation, seekers cultivate vibrant physical health, mental clarity, spiritual radiance, and the awakening of supreme inner consciousness.'
     },
     {
       src: '/Kartikeya.png',
       title: 'Kaumāra',
       link: '/library',
-      description: 'Connect with the Kaumāra lineage dedicated to Lord Kumāra, also known as Murugan or Kārtikeya. Invoke the supreme commander of divine forces, who represents the peak of absolute courage, eternal youth, righteousness, and the ultimate spiritual victory of light over dark forces.'
+      description: 'Connect with the noble Kaumāra lineage dedicated to Lord Kumāra, also revered as Murugan, Skanda, or Kārtikeya. Exalted in Tamil Sangam literature and the Skanda Purāṇa, Kumāra is the supreme celestial commander representing divine wisdom (Jnāna), eternal youth, courage, and spiritual purity. Seekers invoke His divine spear (Vel) to pierce through spiritual ignorance, master self-discipline, eradicate egoic impurities, and achieve victorious liberation of light over dark forces in cosmic harmony.'
     },
     {
       src: '/Smartha.png',
       title: 'Smārta',
       link: '/library',
-      description: 'Embrace the Smārta philosophy, which advocates a non-sectarian, balanced pancha-devatā approach to worship. Meditate on the absolute unity of the singular divine consciousness manifest harmoniously through five major personal deities, guiding seekers along a path of pure wisdom and liberation.'
+      description: 'Embrace the comprehensive Smārta tradition synthesized by Ādi Śankarācārya, advocating a non-sectarian, balanced Pañcāyatana approach to divine worship. Grounded in Vedic Sruti, Smriti, and Advaita Vedānta philosophy, this lineage recognizes that the singular Supreme Consciousness (Brahman) manifests harmoniously through five personal deities—Śiva, Viṣṇu, Devī, Sūrya, and Gaṇeśa. Guided by self-inquiry (Jñāna Yoga) and scriptural contemplation, seekers transcend external boundaries to realize the non-dual unity of the Self (Ātman) with the cosmos.'
     },
   ];
 

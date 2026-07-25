@@ -115,6 +115,19 @@ export default function TextMorph() {
           {displayText}
         </h1>
 
+        {/* Subtitle description in matching gradient */}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-sm md:text-base max-w-md md:max-w-lg text-center font-medium tracking-wide bg-gradient-to-r from-purple-200 via-pink-200 to-purple-200 bg-clip-text text-transparent mt-1 px-4"
+          style={{
+            filter: 'drop-shadow(0 2px 10px rgba(168, 85, 247, 0.5)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9))',
+          }}
+        >
+          A digital sanctuary preserving sacred Sanskrit scriptures, authentic Vedic recitations, and eternal Sanātana philosophical wisdom.
+        </motion.p>
+
         {/* Glow effect */}
         <div
           className="absolute inset-0 text-6xl md:text-8xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent blur-2xl opacity-60 -z-10"
