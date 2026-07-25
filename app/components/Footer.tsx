@@ -241,7 +241,7 @@ export default function Footer() {
                             {/* Center Golden Lotus */}
                             <img
                               src="/goldenlotus.png"
-                              alt=""
+                              alt="Golden Lotus Divider Emblem"
                               className="w-6 h-6 shrink-0 object-contain drop-shadow-[0_0_6px_rgba(229,193,88,0.6)]"
                             />
 

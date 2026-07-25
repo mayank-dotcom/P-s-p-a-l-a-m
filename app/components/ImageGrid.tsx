@@ -23,7 +23,7 @@ interface DetailCardProps {
 function DetailCard({ isVisible, title, description }: DetailCardProps) {
   return (
     <div
-      className={`absolute inset-0 flex flex-col justify-center items-center p-4 transition-opacity duration-500 z-40 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      className={`absolute inset-0 flex flex-col justify-center items-center p-2 sm:p-4 transition-opacity duration-500 z-40 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       style={{
         marginTop: '1.5rem',
@@ -35,10 +35,10 @@ function DetailCard({ isVisible, title, description }: DetailCardProps) {
           transform: isVisible ? 'skewX(15deg) scale(1)' : 'skewX(15deg) scale(0.95)',
           transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
-        className="relative w-[450px] max-w-[92vw] aspect-[0.74] sm:aspect-[0.76]"
+        className="relative w-[340px] sm:w-[380px] md:w-[420px] lg:w-[450px] max-w-[92vw] aspect-[0.74] sm:aspect-[0.76]"
       >
         {/* Blur element - scaled down behind the card (z-0) */}
-        <div className="absolute inset-x-10 top-24 bottom-12 rounded-[24px] backdrop-blur-md scale-90 pointer-events-none z-0" />
+        <div className="absolute inset-x-6 sm:inset-x-10 top-16 sm:top-24 bottom-8 sm:bottom-12 rounded-[24px] backdrop-blur-md scale-90 pointer-events-none z-0" />
 
         {/* Card element - rendered on top of the blur (z-10) with sharp card.png */}
         <div
@@ -48,17 +48,17 @@ function DetailCard({ isVisible, title, description }: DetailCardProps) {
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
           }}
-          className="absolute inset-0 p-8 sm:p-10 flex flex-col justify-center items-center text-center shadow-2xl z-10"
+          className="absolute inset-0 p-6 sm:p-8 md:p-10 flex flex-col justify-center items-center text-center shadow-2xl z-10"
         >
           {/* Card Content */}
-          <div className="w-full flex flex-col items-center justify-center my-auto px-4 sm:px-6">
+          <div className="w-full flex flex-col items-center justify-center my-auto px-2 sm:px-4 md:px-6">
             {/* Title */}
-            <h3 className="text-[#FFE5A3] text-2xl sm:text-3xl font-bold tracking-wide font-[family-name:var(--font-jaini-purva)] drop-shadow-[0_2px_8px_rgba(200,147,62,0.35)] mb-3">
+            <h3 className="text-[#FFE5A3] text-xl sm:text-2xl md:text-3xl font-bold tracking-wide font-[family-name:var(--font-jaini-purva)] drop-shadow-[0_2px_8px_rgba(200,147,62,0.35)] mb-2 sm:mb-3">
               {title}
             </h3>
 
             {/* Description */}
-            <p className="text-[#FFE5A3]/90 text-[13px] sm:text-[13.5px] leading-relaxed font-sans px-2">
+            <p className="text-[#FFE5A3]/90 text-[11.5px] sm:text-[12.5px] md:text-[13px] lg:text-[13.5px] xl:text-[14px] leading-relaxed font-sans px-1 sm:px-2">
               {description}
             </p>
           </div>
@@ -73,8 +73,52 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    // Single mount state trigger for CSS-based entrance transition
-    setIsMounted(true);
+    let isCancelled = false;
+
+    // Critical hero images to preload
+    const imageSources = [
+      '/Ganpati.png',
+      '/Shiv.png',
+      '/Vishnu.png',
+      '/Devi.png',
+      '/Surya.png',
+      '/Kartikeya.png',
+      '/Smartha.png',
+      '/card.png'
+    ];
+
+    let loadedCount = 0;
+    const totalImages = imageSources.length;
+
+    const checkLoaded = () => {
+      loadedCount++;
+      if (loadedCount >= totalImages && !isCancelled) {
+        setIsMounted(true);
+      }
+    };
+
+    imageSources.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      if (img.complete && img.naturalWidth !== 0) {
+        checkLoaded();
+      } else {
+        img.onload = checkLoaded;
+        img.onerror = checkLoaded;
+      }
+    });
+
+    // Fallback timer: ensure smooth transition within max 400ms regardless of network speed
+    const fallbackTimer = setTimeout(() => {
+      if (!isCancelled) {
+        setIsMounted(true);
+      }
+    }, 400);
+
+    return () => {
+      isCancelled = true;
+      clearTimeout(fallbackTimer);
+    };
   }, []);
 
   // Default images with comprehensive spiritual & philosophical descriptions (~80+ words each)

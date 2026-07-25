@@ -696,13 +696,13 @@ export default function ShivaLibraryPage() {
                 }}>
                   <img
                     src="/book.webp"
-                    alt="book"
+                    alt="Ancient Shiva Stotram Book"
                     className="w-full h-full object-contain"
                     style={{ opacity: 0.1 }}
                   />
                   <img
                     src="/shiv_cover.png"
-                    alt="cover"
+                    alt="Lord Shiva Scripture Cover Art"
                     className="absolute rounded"
                     style={{
                       top: '22%',

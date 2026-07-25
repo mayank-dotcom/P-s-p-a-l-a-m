@@ -36,6 +36,16 @@ export default function RootLayout({
           type="module"
           src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"
         ></script>
+        {/* Preload Hero Section Images for instant first load */}
+        <link rel="preload" href="/Ganpati.png" as="image" />
+        <link rel="preload" href="/Shiv.png" as="image" />
+        <link rel="preload" href="/Vishnu.png" as="image" />
+        <link rel="preload" href="/Devi.png" as="image" />
+        <link rel="preload" href="/Surya.png" as="image" />
+        <link rel="preload" href="/Kartikeya.png" as="image" />
+        <link rel="preload" href="/Smartha.png" as="image" />
+        <link rel="preload" href="/card.png" as="image" />
+        <link rel="preload" href="/logo.png" as="image" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${jainiPurva.variable} antialiased`}

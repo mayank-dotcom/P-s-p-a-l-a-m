@@ -48,7 +48,7 @@ export default function Navbar() {
               <div className="relative group" style={{scale:"160%"}}>
                 <Link href="/">  <img
                   src="/logo.png"
-                  alt="Logo"
+                  alt="Saṃgraha Digital Library Logo"
                   className="w-9 h-9 transition-all duration-300"
                 /></Link>
                
