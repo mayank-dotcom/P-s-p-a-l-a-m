@@ -272,12 +272,53 @@ export default function LibraryPage() {
         </div>
         {/* Right Side - Ganesha Seed Mantra */}
         <div className="w-full md:w-1/2 flex flex-col justify-start items-center md:items-start relative z-10 pl-0 md:pl-[8vw] pt-[0vh] md:pt-[2vh]" style={{ transform: 'translateY(-8vh)' }}>
-          <span 
-            className="sarpanch-extrabold text-transparent text-[35vw] md:text-[20vw] leading-none select-none"
-            style={{ WebkitTextStroke: '2px black' }}
-          >
-            गं
-          </span>
+          <div className="relative flex items-center justify-center">
+            {/* Vertical C-Shape Curved "GANPATYA" Pattern in White Area */}
+            <svg 
+              className="absolute right-[-8vw] md:right-[-5.5vw] w-[22vw] md:w-[14vw] h-[45vw] md:h-[27vw] overflow-visible select-none pointer-events-none z-10" 
+              viewBox="0 0 120 300"
+            >
+              {/* Upright Straight Letter 'G' */}
+              <text 
+                x="10" 
+                y="32" 
+                className="sarpanch-extrabold font-bold uppercase" 
+                fill="#8B0000" 
+                stroke="black"
+                strokeWidth="1.2"
+                style={{ paintOrder: 'stroke fill' }}
+                fontSize="32" 
+              >
+                G
+              </text>
+
+              {/* Path for remaining letters ANPATYA */}
+              <path 
+                id="ganpatyaRestArc" 
+                d="M 38,55 C 120,110 120,225 20,280" 
+                fill="none" 
+              />
+              <text 
+                className="sarpanch-extrabold font-bold uppercase tracking-[0.28em]" 
+                fill="#8B0000" 
+                stroke="black"
+                strokeWidth="1.2"
+                style={{ paintOrder: 'stroke fill' }}
+                fontSize="32" 
+              >
+                <textPath href="#ganpatyaRestArc" startOffset="0%">
+                  A N P A T Y A
+                </textPath>
+              </text>
+            </svg>
+
+            <span 
+              className="sarpanch-extrabold text-transparent text-[35vw] md:text-[20vw] leading-none select-none relative z-0"
+              style={{ WebkitTextStroke: '2px black' }}
+            >
+              गं
+            </span>
+          </div>
         </div>
       </section>
 

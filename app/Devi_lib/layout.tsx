@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Devi - Cosmic Goddess",
-  description: "Infinite Power • Eternal Grace",
+  description: "Explore Devi, the Cosmic Goddess — her infinite power, eternal grace, sacred stories, and divine presence brought to life through immersive 3D.",
 };
 
 export default function DeviLayout({
