@@ -98,8 +98,8 @@ export default function Footer() {
                         filter: 'drop-shadow(0 0 30px rgba(168, 85, 247, 0.6))',
                       }}
                     />
-                    <span
-                      className="block text-2xl sm:text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold bg-gradient-to-r from-purple-300 via-pink-300 to-purple-300 bg-clip-text text-transparent tracking-wide whitespace-nowrap"
+                    <h2
+                      className="text-2xl sm:text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold bg-gradient-to-r from-purple-300 via-pink-300 to-purple-300 bg-clip-text text-transparent tracking-wide whitespace-nowrap"
                       style={{
                         fontFamily: 'serif',
                         WebkitTextStroke: '1px rgba(255, 255, 255, 0.3)',
@@ -107,7 +107,7 @@ export default function Footer() {
                       }}
                     >
                       Saṃgraha
-                    </span>
+                    </h2>
                   </div>
 
                   {/* Subtitle */}
@@ -121,7 +121,7 @@ export default function Footer() {
 
                   {/* Description */}
                   <p className="text-neutral-300 text-xs md:text-xs xl:text-sm 2xl:text-base leading-relaxed mb-6 font-normal">
-                    Saṃgraha is a dedicated digital sanctuary for Sanātana Dharma. We preserve classical Sanskrit scriptures, Vedic mantras, and palm-leaf manuscripts. Modern interactive design meets high-fidelity audio recitations and authentic reverence. Our platform bridges ancient wisdom with modern technology. Seekers and scholars receive unhindered access to original Devanagari texts. We provide Sanskrit grammar tools and rare stotram traditions preserved across centuries.
+                    Saṃgraha is a dedicated digital sanctuary preserving classical Sanskrit scriptures, Vedic mantras, palm-leaf manuscripts, and philosophical lineages of India through modern interactive design, high-fidelity audio recitations, and authentic reverence. Our mission is to bridge ancient wisdom with modern technology, providing scholars, seekers, and devotees worldwide with unhindered access to authentic commentaries, original Devanagari texts, Sanskrit grammar tools, and rare stotram traditions preserved across centuries of Sanātana Dharma.
                   </p>
 
                   {/* Stacked Devanagari Mantra with Ornamental Lines */}
@@ -299,7 +299,7 @@ export default function Footer() {
                 </h4>
 
                 <p className="text-neutral-300 text-xs md:text-xs xl:text-sm 2xl:text-base leading-relaxed mb-4">
-                  Subscribe to our sacred circle of wisdom. Receive authentic English translations of rare stotrams. We deliver Vedic Panchanga astronomical updates and festival lore. Explore Sanskrit linguistic insights and monthly manuscript release notes directly in your inbox.
+                  Subscribe to our sacred circle of wisdom to receive authentic English translations of rare stotrams, Vedic astronomical Panchanga calendar updates, festival lore, Sanskrit linguistic insights, and monthly manuscript release notes delivered directly to your inbox.
                 </p>
 
                 {/* Contact Image with Overlayed Email Input & Button */}
@@ -384,7 +384,7 @@ export default function Footer() {
                 </h4>
 
                 <p className="text-neutral-300 text-xs md:text-xs xl:text-sm 2xl:text-base leading-relaxed mb-3">
-                  Connect with our global digital sanctuary across community channels. We share daily stotram verses and ancient manuscript revelations. Join interactive Sanskrit learning sessions and Vedic wisdom updates. Engage in spiritual discourses with traditional scholars.
+                  Connect with our global digital sanctuary across community channels for daily stotram verses, ancient manuscript revelations, interactive Sanskrit learning sessions, Vedic wisdom updates, and spiritual discourses with traditional scholars.
                 </p>
 
                 {/* Yogi Image Container with Centered Vertical Social Icons */}

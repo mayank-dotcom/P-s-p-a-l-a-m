@@ -20,8 +20,8 @@ const jainiPurva = Jaini_Purva({
 });
 
 export const metadata: Metadata = {
-  title: "Saṃgraha | Sanātana Knowledge & Sacred Sanskrit Literature Sanctuary",
-  description: "Explore Saṃgraha, a dedicated digital sanctuary preserving classical Sanskrit scriptures, Vedic mantras, ancient manuscripts, and Sanātana philosophical traditions through interactive design.",
+  title: "Saṃgraha",
+  description: "Saṃgraha is an immersive digital library exploring Hindu deities through interactive 3D models, ancient scriptures, and celestial storytelling.",
 };
 
 export default function RootLayout({
