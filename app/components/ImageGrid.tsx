@@ -127,43 +127,43 @@ export default function ImageGrid({ images = [], onSegmentHover }: ImageGridProp
       src: '/Ganpati.png',
       link: '/Ganesha_lib',
       title: 'Gāṇapatya',
-      description: 'Follow the revered path of the Gāṇapatya sect who venerate Lord Gaṇeśa not merely as a deity of auspicious beginnings, but as the supreme Unmanifest Absolute (Param-Brahman) and primeval cause of all existence. Grounded in sacred texts like the Ganesha Purana, Mudgala Purana, and Ganapati Atharvashirsha Upanishad, this tradition guides seekers to transcend material obstacles (Vighna), awaken the root Muladhara chakra, refine intellect (Buddhi), and attain supreme auspicious liberation (Siddhi) through meditation on the divine sound Om.'
+      description: 'Follow the revered path of the Gāṇapatya sect. This tradition venerates Lord Gaṇeśa as the supreme Unmanifest Absolute (Param-Brahman). He is the primeval cause of all existence. Sacred scriptures include the Ganesha Purana, Mudgala Purana, and Ganapati Atharvashirsha Upanishad. Seekers learn to transcend material obstacles (Vighna). Practice awakens the root Muladhara chakra and refines intellect (Buddhi). Meditation on the sacred sound Om leads to supreme auspicious liberation (Siddhi).'
     },
     {
       src: '/Shiv.png',
       title: 'Śaiva',
       link: '/Shiva_lib',
-      description: 'Follow the ancient Śaiva tradition that reveres Lord Śiva as Paramaśiva—the ultimate, self-luminous cosmic consciousness transcending form, time, and illusion. Grounded in the sacred Śaiva Āgamas, Upanishads, and devotional hymns like Śivamahimna Stotram, this lineage emphasizes inner yoga, profound meditation, non-dual wisdom (Advaita), and detachment. Seekers surrender to the grace of Natarāja, the infinite cosmic dancer who gracefully orchestrates the eternal cycles of creation (Sṛṣṭi), preservation (Sthiti), and ultimate dissolution (Saṃhāra).'
+      description: 'Follow the ancient Śaiva tradition revering Lord Śiva as Paramaśiva. He is the ultimate, self-luminous cosmic consciousness. This tradition transcends form, time, and worldly illusion. Wisdom stems from the sacred Śaiva Āgamas, Upanishads, and Śivamahimna Stotram. Seekers emphasize inner yoga, meditation, and non-dual wisdom (Advaita). Detachment frees the mind from transient desires. Devotees surrender to Natarāja, the infinite cosmic dancer. He orchestrates creation (Sṛṣṭi), preservation (Sthiti), and dissolution (Saṃhāra).'
     },
     {
       src: '/Vishnu.png',
       title: 'Vaiṣṇava',
       link: '/Vishnu_lib',
-      description: 'Adhere to the Vaiṣṇava dharma centered on Lord Viṣṇu as the eternal preserver, cosmic protector, and supreme source of universal harmony. Grounded in the divine teachings of the Śrīmad Bhagavad Gītā, Viṣṇu Purāṇa, and Bhāgavata Purāṇa, this tradition champions the path of unconditional loving devotion (Bhakti-yoga), righteous action, and total self-surrender (Prapatti). Meditate upon the ten sacred descents (Daśāvatāra) of the Supreme Being, who manifests across cosmic epochs to subdue adharma and uphold divine truth.'
+      description: 'Adhere to the Vaiṣṇava dharma centered on Lord Viṣṇu. He is the eternal preserver and cosmic protector of universal harmony. Divine teachings originate from the Śrīmad Bhagavad Gītā, Viṣṇu Purāṇa, and Bhāgavata Purāṇa. This lineage champions unconditional devotion (Bhakti-yoga) and righteous living. Seekers practice total self-surrender (Prapatti). Devotees meditate upon the ten sacred descents (Daśāvatāra). The Supreme Being manifests across cosmic epochs to subdue adharma and protect divine truth.'
     },
     {
       src: '/Devi.png',
       title: 'Śākta',
       link: '/Devi_lib',
-      description: 'Honor the supreme Devī as the primordial cosmic power (Ādyā Śakti) and divine mother of creation in the Śākta tradition. Drawing wisdom from sacred texts like the Devī Māhātmya, Lalitā Sahasranāma, and Devī Bhāgavata Purāṇa, this lineage reveres the divine feminine as the active energy animating all consciousness. Meditate upon the infinite flow of maternal grace, the awakening of Kundalini energy, and Her fierce protection against ignorance, surrendering to the cosmic force that sustains and liberates all living beings.'
+      description: 'Honor the supreme Devī in the Śākta tradition. She is the primordial cosmic power (Ādyā Śakti) and divine mother. Sacred texts include the Devī Māhātmya, Lalitā Sahasranāma, and Devī Bhāgavata Purāṇa. This lineage reveres the divine feminine as active cosmic energy. Her presence animates all living consciousness. Seekers receive the infinite flow of maternal grace. Devotion awakens Kundalini energy and grants fierce protection against ignorance. Her cosmic power sustains, nurtures, and liberates all beings.'
     },
     {
       src: '/Surya.png',
       title: 'Saurā',
       link: '/Surya_lib',
-      description: 'Follow the ancient Saurā tradition exalting Lord Sūrya as Pratyakṣa Devatā—the visible, radiant manifestation of the Supreme Brahman and soul of the cosmos (Sūryātmā). Drawing deep illumination from Rigvedic solar hymns and the Āditya Hṛdayam Stotram, this sacred path aligns human vitality with divine solar energy. Through morning Sandhyāvandanam, Gayatri japa, and solar contemplation, seekers cultivate vibrant physical health, mental clarity, spiritual radiance, and the awakening of supreme inner consciousness.'
+      description: 'Follow the ancient Saurā tradition exalting Lord Sūrya as Pratyakṣa Devatā. He is the visible, radiant manifestation of the Supreme Self (Sūryātmā). Illumination comes from Rigvedic solar hymns and the Āditya Hṛdayam Stotram. This sacred path aligns human vitality with solar energy. Morning Sandhyāvandanam and Gayatri japa purify the mind. Solar contemplation cultivates vibrant physical health and spiritual radiance. Daily devotion awakens supreme inner consciousness and dispels all dark ignorance.'
     },
     {
       src: '/Kartikeya.png',
       title: 'Kaumāra',
       link: '/library',
-      description: 'Connect with the noble Kaumāra lineage dedicated to Lord Kumāra, also revered as Murugan, Skanda, or Kārtikeya. Exalted in Tamil Sangam literature and the Skanda Purāṇa, Kumāra is the supreme celestial commander representing divine wisdom (Jnāna), eternal youth, courage, and spiritual purity. Seekers invoke His divine spear (Vel) to pierce through spiritual ignorance, master self-discipline, eradicate egoic impurities, and achieve victorious liberation of light over dark forces in cosmic harmony.'
+      description: 'Connect with the noble Kaumāra lineage dedicated to Lord Kumāra. He is also revered as Murugan, Skanda, or Kārtikeya. Exalted in Tamil Sangam literature and the Skanda Purāṇa, Kumāra leads celestial forces. He represents divine wisdom (Jnāna), courage, and eternal youth. Seekers invoke His divine spear (Vel) to pierce spiritual ignorance. Discipline helps master self-control and eradicate egoic impurities. Walking this righteous path leads to the victorious triumph of light over dark forces.'
     },
     {
       src: '/Smartha.png',
       title: 'Smārta',
       link: '/library',
-      description: 'Embrace the comprehensive Smārta tradition synthesized by Ādi Śankarācārya, advocating a non-sectarian, balanced Pañcāyatana approach to divine worship. Grounded in Vedic Sruti, Smriti, and Advaita Vedānta philosophy, this lineage recognizes that the singular Supreme Consciousness (Brahman) manifests harmoniously through five personal deities—Śiva, Viṣṇu, Devī, Sūrya, and Gaṇeśa. Guided by self-inquiry (Jñāna Yoga) and scriptural contemplation, seekers transcend external boundaries to realize the non-dual unity of the Self (Ātman) with the cosmos.'
+      description: 'Embrace the comprehensive Smārta tradition synthesized by Ādi Śankarācārya. This philosophy advocates a balanced Pañcāyatana approach to worship. Grounded in Vedic Sruti, Smriti, and Advaita Vedānta, it honors one Supreme Consciousness (Brahman). Divine reality manifests harmoniously through five deities: Śiva, Viṣṇu, Devī, Sūrya, and Gaṇeśa. Guided by self-inquiry (Jñāna Yoga), seekers transcend external boundaries. Scriptural contemplation reveals the non-dual unity of the Self (Ātman) with the cosmos.'
     },
   ];
 
